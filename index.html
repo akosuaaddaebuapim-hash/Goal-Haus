@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Goal-Haus</title>
-  </head>
-  <body class="bg-gray-950 text-white">
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goal Haus Leaderboard</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .leaderboard {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #222;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    .user {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+    .user span {
+      font-weight: bold;
+      color: #FFD700;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>⚽ Goal Haus Leaderboard</h1>
+  <div class="leaderboard" id="leaderboard"></div>
+
+  <script>
+    const users = [
+      { name: "Alice", points: 120, favoriteTeam: "Team A" },
+      { name: "Bob", points: 95, favoriteTeam: "Team B" },
+      { name: "Charlie", points: 80, favoriteTeam: "Team C" },
+      { name: "Dave", points: 70, favoriteTeam: "Neutral" }
+    ];
+
+    const container = document.getElementById("leaderboard");
+
+    // Sort users by points descending
+    users.sort((a, b) => b.points - a.points);
+
+    const medals = ["🥇", "🥈", "🥉"];
+
+    users.forEach((user, index) => {
+      const div = document.createElement("div");
+      div.className = "user";
+
+      // Medal or rank
+      const rank = index < 3 ? medals[index] : `${index + 1}.`;
+
+      div.innerHTML = `
+        <span>${rank}</span>
+        <div>
+          <div>${user.name}</div>
+          <div style="font-size: 0.8em; color: #aaa;">❤️ ${user.favoriteTeam}</div>
+        </div>
+        <span>${user.points} pts</span>
+      `;
+
+      container.appendChild(div);
+    });
+  </script>
+
+</body>
 </html>
