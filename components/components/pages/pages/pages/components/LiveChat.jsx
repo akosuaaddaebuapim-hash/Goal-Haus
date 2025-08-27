@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function LiveChat() {
-  const [room, setRoom] = useState("General"); // default chat room
+export default function LiveChat({ initialRoom = "General" }) {
+  const [room, setRoom] = useState(initialRoom); // start with initial room
   const [messages, setMessages] = useState({
     General: [
       { id: 1, user: "FootyFan", text: "Welcome to Goal-Haus chat! 🎉" },
