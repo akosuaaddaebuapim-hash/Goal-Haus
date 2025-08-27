@@ -1,19 +1,12 @@
 import { useState } from "react";
 
-export default function LiveChat({ initialRoom = "General" }) {
-  const [room, setRoom] = useState(initialRoom); // start with initial room
+export default function LiveChat({ initialRoom = "General", awardPoints }) {
+  const [room, setRoom] = useState(initialRoom);
   const [messages, setMessages] = useState({
-    General: [
-      { id: 1, user: "FootyFan", text: "Welcome to Goal-Haus chat! 🎉" },
-    ],
-    "Man Utd vs Chelsea": [
-      { id: 1, user: "BlueBlood", text: "Chelsea gonna win today 🔵" },
-    ],
-    "Real Madrid vs Barca": [
-      { id: 1, user: "ElClasicoFan", text: "Hala Madrid! ⚪" },
-    ],
+    General: [{ id: 1, user: "FootyFan", text: "Welcome to Goal-Haus chat! 🎉" }],
+    "Man Utd vs Chelsea": [{ id: 1, user: "BlueBlood", text: "Chelsea gonna win today 🔵" }],
+    "Real Madrid vs Barca": [{ id: 1, user: "ElClasicoFan", text: "Hala Madrid! ⚪" }],
   });
-
   const [newMsg, setNewMsg] = useState("");
 
   const handleSend = () => {
@@ -28,6 +21,7 @@ export default function LiveChat({ initialRoom = "General" }) {
       [room]: [...messages[room], newEntry],
     });
     setNewMsg("");
+    if (awardPoints) awardPoints("You", 1); // +1 point per message
   };
 
   return (
