@@ -10,6 +10,7 @@ export default function Matches() {
   const navigate = useNavigate();
 
   const handleJoinChat = (match) => {
+    // redirect to Community page with match name as room
     navigate(`/community?room=${encodeURIComponent(match.teams)}`);
   };
 
