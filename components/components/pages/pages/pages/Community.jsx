@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Leaderboard from "../components/Leaderboard";
 import LiveChat from "../components/LiveChat";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export default function Community() {
   const [posts, setPosts] = useState([
@@ -36,6 +41,9 @@ export default function Community() {
       )
     );
   };
+
+  const query = useQuery();
+  const initialRoom = query.get("room") || "General";
 
   return (
     <div className="px-6 py-8 max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
@@ -90,8 +98,8 @@ export default function Community() {
         <Leaderboard users={users} />
       </div>
 
-      {/* Right side (Live Chat) */}
-      <LiveChat />
+      {/* Right side (Live Chat with initial room) */}
+      <LiveChat initialRoom={initialRoom} />
     </div>
   );
 }
