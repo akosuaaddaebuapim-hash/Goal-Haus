@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Leaderboard from "../components/Leaderboard";
+import LiveChat from "../components/LiveChat";
 
 export default function Community() {
   const [posts, setPosts] = useState([
@@ -10,7 +11,6 @@ export default function Community() {
 
   const [newPost, setNewPost] = useState("");
 
-  // Fake user points
   const users = [
     { id: 1, name: "FootballFan99", points: 120 },
     { id: 2, name: "GoalLover", points: 95 },
@@ -38,8 +38,8 @@ export default function Community() {
   };
 
   return (
-    <div className="px-6 py-8 max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-      {/* Feed */}
+    <div className="px-6 py-8 max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+      {/* Left side (Posts + Leaderboard) */}
       <div className="md:col-span-2">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -68,7 +68,7 @@ export default function Community() {
         </div>
 
         {/* Posts Feed */}
-        <div className="space-y-4">
+        <div className="space-y-4 mb-6">
           {posts.map((post) => (
             <div
               key={post.id}
@@ -85,10 +85,13 @@ export default function Community() {
             </div>
           ))}
         </div>
+
+        {/* Leaderboard */}
+        <Leaderboard users={users} />
       </div>
 
-      {/* Leaderboard */}
-      <Leaderboard users={users} />
+      {/* Right side (Live Chat) */}
+      <LiveChat />
     </div>
   );
 }
