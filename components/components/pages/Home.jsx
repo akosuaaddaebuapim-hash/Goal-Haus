@@ -59,3 +59,16 @@ export default function Home() {
     </div>
   );
 }
+import FanOfTheWeek from "./FanOfTheWeek";
+
+export default function Home({ users }) {
+  return (
+    <div className="p-4 space-y-6">
+      {/* Fan of the Week Spotlight */}
+      <FanOfTheWeek users={users} />
+
+      {/* Existing content (leaderboard, matches, chat, etc.) */}
+      {/* ... */}
+    </div>
+  );
+}
