@@ -10,19 +10,33 @@ function useQuery() {
 }
 
 export default function Community() {
+  const query = useQuery();
+  const initialRoom = query.get("room") || "General";
+
+  // Users + points
+  const [users, setUsers] = useState([
+    { id: 1, name: "FootballFan99", points: 120 },
+    { id: 2, name: "GoalLover", points: 95 },
+    { id: 3, name: "You", points: 50 },
+  ]);
+
   const [posts, setPosts] = useState([
     { id: 1, user: "FootballFan99", content: "Salah is unstoppable 🔥", likes: 12 },
     { id: 2, user: "GoalLover", content: "Can’t wait for El Clásico!", likes: 20 },
   ]);
+
   const [newPost, setNewPost] = useState("");
 
-  const users = [
-    { id: 1, name: "FootballFan99", points: 120 },
-    { id: 2, name: "GoalLover", points: 95 },
-    { id: 3, name: "You", points: 50 },
-  ];
+  // Award points to a user
+  const awardPoints = (username, points) => {
+    setUsers((prev) =>
+      prev.map((u) =>
+        u.name === username ? { ...u, points: u.points + points } : u
+      )
+    );
+  };
 
-  // Add a new post
+  // Add new post
   const handlePost = () => {
     if (newPost.trim() === "") return;
     const newEntry = {
@@ -33,24 +47,23 @@ export default function Community() {
     };
     setPosts([newEntry, ...posts]);
     setNewPost("");
+    awardPoints("You", 10); // +10 for posting
   };
 
-  // Like a post
-  const handleLike = (id) => {
+  // Like post
+  const handleLike = (id, username) => {
     setPosts(
       posts.map((post) =>
         post.id === id ? { ...post, likes: post.likes + 1 } : post
       )
     );
+    awardPoints("You", 2); // +2 for liking
+    awardPoints(username, 1); // +1 for being liked
   };
-
-  // Check URL query for match room
-  const query = useQuery();
-  const initialRoom = query.get("room") || "General";
 
   return (
     <div className="px-6 py-8 max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-      {/* Left side (Posts + Leaderboard) */}
+      {/* Left side */}
       <div className="md:col-span-2">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -61,7 +74,7 @@ export default function Community() {
           🗣 Community Hub
         </motion.h1>
 
-        {/* Create Post Box */}
+        {/* Create Post */}
         <div className="bg-gray-800 p-4 rounded-2xl shadow-lg mb-6">
           <textarea
             value={newPost}
@@ -88,7 +101,7 @@ export default function Community() {
               <p className="text-sm text-green-400 font-bold">@{post.user}</p>
               <p className="mt-2">{post.content}</p>
               <button
-                onClick={() => handleLike(post.id)}
+                onClick={() => handleLike(post.id, post.user)}
                 className="mt-3 px-3 py-1 bg-green-500 text-black rounded hover:bg-green-400 transition"
               >
                 👍 {post.likes}
@@ -101,8 +114,8 @@ export default function Community() {
         <Leaderboard users={users} />
       </div>
 
-      {/* Right side (Live Chat with initial room from URL) */}
-      <LiveChat initialRoom={initialRoom} />
+      {/* Live Chat → pass awardPoints */}
+      <LiveChat initialRoom={initialRoom} awardPoints={awardPoints} />
     </div>
   );
 }
