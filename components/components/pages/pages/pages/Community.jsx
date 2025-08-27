@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Leaderboard from "../components/Leaderboard";
 import LiveChat from "../components/LiveChat";
 
+// Helper hook for reading query params
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -13,7 +14,6 @@ export default function Community() {
     { id: 1, user: "FootballFan99", content: "Salah is unstoppable 🔥", likes: 12 },
     { id: 2, user: "GoalLover", content: "Can’t wait for El Clásico!", likes: 20 },
   ]);
-
   const [newPost, setNewPost] = useState("");
 
   const users = [
@@ -22,6 +22,7 @@ export default function Community() {
     { id: 3, name: "You", points: 50 },
   ];
 
+  // Add a new post
   const handlePost = () => {
     if (newPost.trim() === "") return;
     const newEntry = {
@@ -34,6 +35,7 @@ export default function Community() {
     setNewPost("");
   };
 
+  // Like a post
   const handleLike = (id) => {
     setPosts(
       posts.map((post) =>
@@ -42,6 +44,7 @@ export default function Community() {
     );
   };
 
+  // Check URL query for match room
   const query = useQuery();
   const initialRoom = query.get("room") || "General";
 
@@ -98,7 +101,7 @@ export default function Community() {
         <Leaderboard users={users} />
       </div>
 
-      {/* Right side (Live Chat with initial room) */}
+      {/* Right side (Live Chat with initial room from URL) */}
       <LiveChat initialRoom={initialRoom} />
     </div>
   );
