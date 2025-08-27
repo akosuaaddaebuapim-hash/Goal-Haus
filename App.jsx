@@ -1,28 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Matches from "./pages/Matches";
-import Highlights from "./pages/Highlights";
-import Community from "./pages/Community";
+import React from "react";
+import Leaderboard from "./Leaderboard"; // make sure the path is correct
 
-function App() {
+export default function App() {
+  const users = [
+    { id: 1, name: "Alice", points: 120, favoriteTeam: "Team A", avatar: null },
+    { id: 2, name: "Bob", points: 95, favoriteTeam: "Team B", avatar: null },
+    { id: 3, name: "Charlie", points: 80, favoriteTeam: "Team C", avatar: null },
+  ];
+
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col bg-gray-950 text-white">
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/matches" element={<Matches />} />
-            <Route path="/highlights" element={<Highlights />} />
-            <Route path="/community" element={<Community />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <div style={{ padding: "20px", textAlign: "center" }}>
+      <h1 style={{ color: "#fff" }}>⚽ Goal Haus Leaderboard</h1>
+      <Leaderboard users={users} />
+    </div>
   );
 }
-
-export default App;
