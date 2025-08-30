@@ -1,200 +1,475 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GoalHaus</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GoalHaus — Live Football Hub</title>
+  <meta name="description" content="GoalHaus — live scores, fixtures, highlights, fan zone and more. Built by Scribe Haus." />
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0a0a0a;
-      color: #f5f5f5;
-      line-height: 1.6;
+    /* -------------------------
+       BASE / THEME
+       ------------------------- */
+    :root{
+      --bg-1:#070707;
+      --bg-2:#0f0f0f;
+      --gold:#f5c542;
+      --muted:#bdbdbd;
+      --card:#111216;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+      background: linear-gradient(120deg,var(--bg-1),var(--bg-2));
+      color:var(--gold);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+    a{color:inherit}
+    img{max-width:100%;height:auto;display:block}
+
+    /* -------------------------
+       Animated gradient overlay
+       ------------------------- */
+    .bg-animated{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background: radial-gradient(circle at 10% 10%, rgba(245,197,66,0.06), transparent 8%),
+                  radial-gradient(circle at 80% 80%, rgba(245,197,66,0.04), transparent 10%);
+      mix-blend-mode: screen;
+      animation: bgShift 12s linear infinite;
+      opacity:0.95;
+    }
+    @keyframes bgShift{
+      0%{background-position:0% 0%,100% 100%}
+      50%{background-position:100% 50%,0% 100%}
+      100%{background-position:0% 0%,100% 100%}
     }
 
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: linear-gradient(135deg, #000, #222);
-      color: gold;
-      animation: fadeIn 2s ease-in-out;
+    /* -------------------------
+       Abstract glowing orbs
+       ------------------------- */
+    .orb{
+      position:fixed;
+      border-radius:50%;
+      filter: blur(10px);
+      opacity:0.12;
+      z-index:0;
+      pointer-events:none;
+      mix-blend-mode: screen;
     }
+    .orb.orb1{width:220px;height:220px;left:-40px;top:10vh;background: radial-gradient(circle,#f5c542 0%, rgba(245,197,66,0.05) 40%, transparent 60%); animation: float1 28s linear infinite;}
+    .orb.orb2{width:160px;height:160px;right:-30px;top:30vh;background: radial-gradient(circle,#ffd87a 0%, rgba(255,216,122,0.04) 40%, transparent 60%); animation: float2 22s linear infinite; opacity:0.1}
+    .orb.orb3{width:300px;height:300px;left:10%;bottom:-80px;background: radial-gradient(circle,#f0b83a 0%, rgba(240,184,58,0.035) 45%, transparent 70%); animation: float3 34s linear infinite; opacity:0.08}
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-      letter-spacing: 3px;
+    @keyframes float1 {0%{transform:translateY(0) scale(.95)}50%{transform:translateY(-40vh) scale(1.05)}100%{transform:translateY(0) scale(.95)}}
+    @keyframes float2 {0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30vh) scale(1.02)}100%{transform:translateY(0) scale(1)}}
+    @keyframes float3 {0%{transform:translateY(0) scale(.9)}50%{transform:translateY(-45vh) scale(1.06)}100%{transform:translateY(0) scale(.9)}}
+
+    /* -------------------------
+       LAYOUT
+       ------------------------- */
+    .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:18px}
+    header{padding:56px 18px 36px;text-align:center}
+    .brand{display:flex;align-items:center;justify-content:center;gap:14px}
+    .logo{font-size:36px;line-height:1}
+    .title{font-weight:800;font-size:36px;letter-spacing:2px;color:var(--gold)}
+    .subtitle{color:var(--muted);margin-top:6px;font-size:14px}
+
+    /* NAV (small and simple) */
+    nav{display:flex;gap:12px;justify-content:center;margin-top:18px;margin-bottom:6px}
+    .navlink{color:var(--muted);font-weight:600;padding:8px 12px;border-radius:999px;background:transparent;border:1px solid transparent;transition:all .2s}
+    .navlink:hover{color:#fff;border-color:rgba(255,255,255,0.04);background:var(--glass)}
+
+    /* section cards/grid */
+    section{padding:38px 18px}
+    .sectionInner{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); padding:18px; border-radius:12px; box-shadow: 0 6px 18px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.03)}
+    .grid{display:grid;gap:12px}
+    @media(min-width:760px){ .grid.cols3{grid-template-columns:repeat(3,1fr)} .grid.cols2{grid-template-columns:repeat(2,1fr)} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+      border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);
+      transition: transform .22s, box-shadow .22s; color: #fff;
     }
+    .card h3{margin:0 0 8px 0;color:var(--gold);font-size:16px}
+    .card p{color:var(--muted);font-size:13px;margin:0}
 
-    header p {
-      font-size: 1.2rem;
-      color: #f5f5f5;
-    }
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--gold);color:#111;font-weight:700;border:none;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:10px;cursor:pointer}
 
-    section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
+    /* table */
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left;color:#fff}
+    th{color:var(--gold);font-weight:700}
 
-    h2 {
-      color: gold;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid gold;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
+    /* youtube embeds responsive */
+    .videoWrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px}
+    .videoWrap iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
 
-    .card {
-      background: #1a1a1a;
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255,215,0,0.2);
-      transition: transform 0.3s;
-    }
+    /* reveal animations */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.is-visible{opacity:1;transform:translateY(0)}
 
-    .card:hover {
-      transform: scale(1.02);
-    }
+    /* Footer */
+    footer{padding:28px 18px;text-align:center;color:var(--muted);}
+    footer a{color:var(--gold);text-decoration:none;font-weight:700}
 
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    .table th, .table td {
-      padding: 0.8rem;
-      border: 1px solid #444;
-      text-align: center;
-    }
-
-    .table th {
-      background: gold;
-      color: #000;
-    }
-
-    iframe {
-      width: 100%;
-      height: 315px;
-      border-radius: 10px;
-      margin: 1rem 0;
-    }
-
-    form input, form button {
-      padding: 0.8rem;
-      margin: 0.5rem 0;
-      border: none;
-      border-radius: 5px;
-      width: 100%;
-    }
-
-    form input {
-      background: #333;
-      color: #f5f5f5;
-    }
-
-    form button {
-      background: gold;
-      color: #000;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #111;
-      color: #999;
-      margin-top: 3rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* small screens tweaks */
+    @media(max-width:520px){
+      .title{font-size:28px}
+      .logo{font-size:28px}
+      header{padding:36px 12px}
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>⚽ GoalHaus</h1>
-    <p>Your home for live football scores, fixtures, highlights & more</p>
-  </header>
+  <!-- animated background overlays and orbs -->
+  <div class="bg-animated" aria-hidden="true"></div>
+  <div class="orb orb1" aria-hidden="true"></div>
+  <div class="orb orb2" aria-hidden="true"></div>
+  <div class="orb orb3" aria-hidden="true"></div>
 
-  <section>
-    <h2>Live Scores</h2>
-    <div class="card">Manchester United 2 - 1 Chelsea (FT)</div>
-    <div class="card">Real Madrid 3 - 0 Barcelona (75')</div>
-    <div class="card">PSG 1 - 1 Bayern Munich (60')</div>
-  </section>
+  <div class="wrap">
 
-  <section>
-    <h2>Upcoming Fixtures</h2>
-    <div class="card">Arsenal vs Liverpool - Sept 1, 2025</div>
-    <div class="card">Juventus vs AC Milan - Sept 2, 2025</div>
-    <div class="card">Dortmund vs Leipzig - Sept 3, 2025</div>
-  </section>
+    <!-- header -->
+    <header>
+      <div class="brand">
+        <div class="logo">⚽</div>
+        <div>
+          <div class="title">Goalhaus</div>
+          <div class="subtitle">live scores • fixtures • highlights • fan zone — by Scribe Haus</div>
+        </div>
+      </div>
 
-  <section>
-    <h2>League Table</h2>
-    <table class="table">
-      <tr><th>Pos</th><th>Team</th><th>Pts</th></tr>
-      <tr><td>1</td><td>Arsenal</td><td>18</td></tr>
-      <tr><td>2</td><td>Liverpool</td><td>16</td></tr>
-      <tr><td>3</td><td>Man City</td><td>15</td></tr>
-      <tr><td>4</td><td>Chelsea</td><td>13</td></tr>
-    </table>
-  </section>
+      <nav style="margin-top:18px">
+        <a class="navlink" href="#live">Live</a>
+        <a class="navlink" href="#fixtures">Fixtures</a>
+        <a class="navlink" href="#table">Table</a>
+        <a class="navlink" href="#highlights">Highlights</a>
+        <a class="navlink" href="#fanzone">Fan Zone</a>
+        <a class="navlink" href="#subscribe">Subscribe</a>
+      </nav>
+    </header>
 
-  <section>
-    <h2>Top Players</h2>
-    <div class="card">Erling Haaland - 8 Goals</div>
-    <div class="card">Mohamed Salah - 6 Goals</div>
-    <div class="card">Bukayo Saka - 5 Assists</div>
-  </section>
+    <!-- live scores -->
+    <section id="live" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">Live Scores</h2>
+        <div class="grid cols3" style="margin-top:14px">
+          <div class="card">
+            <h3>Barcelona vs Real Madrid</h3>
+            <p class="muted">Score: 2 — 1 (84')</p>
+          </div>
+          <div class="card">
+            <h3>Man City vs Arsenal</h3>
+            <p class="muted">Score: 3 — 3 (HT)</p>
+          </div>
+          <div class="card">
+            <h3>Bayern vs Dortmund</h3>
+            <p class="muted">Score: 1 — 0 (65')</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Highlights</h2>
-    <iframe src="https://www.youtube.com/embed/Z6w8K8vQwtY" title="Football Highlights"></iframe>
-    <iframe src="https://www.youtube.com/embed/8ugJjUrDXSc" title="Match Goals"></iframe>
-  </section>
+    <!-- fixtures -->
+    <section id="fixtures" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">Upcoming Fixtures</h2>
+        <div class="grid cols3" style="margin-top:14px">
+          <div class="card">
+            <h3>Arsenal vs Liverpool</h3>
+            <p class="muted">Sept 1 • 18:00 GMT</p>
+          </div>
+          <div class="card">
+            <h3>Juventus vs Inter</h3>
+            <p class="muted">Sept 2 • 20:45 GMT</p>
+          </div>
+          <div class="card">
+            <h3>PSG vs Marseille</h3>
+            <p class="muted">Sept 3 • 19:00 GMT</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Fan Zone</h2>
-    <div class="card">
-      <p>Who will win the Premier League 2025?</p>
-      <form>
-        <input type="radio" name="vote"> Arsenal<br>
-        <input type="radio" name="vote"> Liverpool<br>
-        <input type="radio" name="vote"> Man City<br>
-        <button type="submit">Vote</button>
-      </form>
-    </div>
-    <div class="card">
-      <h3>⭐ Fan of the Week</h3>
-      <p>Shoutout to James in London for his amazing GoalHaus fan art!</p>
-    </div>
-  </section>
+    <!-- table -->
+    <section id="table" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">League Table — Example</h2>
+        <div style="overflow:auto;margin-top:12px">
+          <table>
+            <thead>
+              <tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>Pts</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Man City</td><td>30</td><td>24</td><td>4</td><td>2</td><td>76</td></tr>
+              <tr><td>2</td><td>Liverpool</td><td>30</td><td>22</td><td>5</td><td>3</td><td>71</td></tr>
+              <tr><td>3</td><td>Arsenal</td><td>30</td><td>20</td><td>6</td><td>4</td><td>66</td></tr>
+              <tr><td>4</td><td>Chelsea</td><td>30</td><td>17</td><td>7</td><td>6</td><td>58</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Subscribe for Updates</h2>
-    <form>
-      <input type="email" placeholder="Enter your email">
-      <button type="submit">Subscribe</button>
-    </form>
-  </section>
+    <!-- top players -->
+    <section id="players" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">Top Players</h2>
+        <div class="grid cols3" style="margin-top:14px">
+          <div class="card"><h3>Erling Haaland</h3><p class="muted">22 goals</p></div>
+          <div class="card"><h3>Mohamed Salah</h3><p class="muted">18 goals</p></div>
+          <div class="card"><h3>Kylian Mbappé</h3><p class="muted">17 goals</p></div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>About GoalHaus</h2>
-    <p>GoalHaus brings the world of football to your fingertips — live scores, fixtures, tables, highlights, and a community of fans who love the game. Whether you’re cheering for your local team or following international leagues, this is your home for football passion.</p>
-  </section>
+    <!-- highlights (youtube) -->
+    <section id="highlights" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">Highlights</h2>
+        <div style="display:grid; gap:12px; grid-template-columns: 1fr; margin-top:12px">
+          <div class="videoWrap card"><iframe src="https://www.youtube.com/embed/3Xz1TtW0lKQ" title="Highlights" allowfullscreen></iframe></div>
+          <div class="videoWrap card"><iframe src="https://www.youtube.com/embed/sDFr2Yzd-8s" title="Top Goals" allowfullscreen></iframe></div>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    <p>© 2025 GoalHaus | Built by Scribe Haus Studio</p>
-  </footer>
+    <!-- fan zone + poll -->
+    <section id="fanzone" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">Fan Zone</h2>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:12px">
+          <div class="card" style="min-width:260px">
+            <h3>Fan Poll</h3>
+            <p class="muted">Who will win the title this season?</p>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <button class="ghost" onclick="vote('Man City')">Man City</button>
+              <button class="ghost" onclick="vote('Liverpool')">Liverpool</button>
+              <button class="ghost" onclick="vote('Arsenal')">Arsenal</button>
+              <button class="ghost" onclick="vote('Other')">Other</button>
+            </div>
+            <p id="pollResult" class="muted" style="margin-top:8px"></p>
+          </div>
+
+          <div class="card" style="min-width:260px">
+            <h3>Fan of the Week</h3>
+            <p class="muted">Shoutout to Kwaku — amazing community posts!</p>
+          </div>
+
+          <div class="card" style="min-width:260px">
+            <h3>Trivia</h3>
+            <p class="muted">Fastest red card was shown after 2 seconds in a competitive match.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- penalty shootout game -->
+    <section id="penalty" class="reveal">
+      <div class="sectionInner center">
+        <h2>Penalty Shootout</h2>
+        <p class="muted">Aim and test your luck — try to beat the keeper!</p>
+
+        <canvas id="penaltyCanvas" width="520" height="220" style="max-width:100%;border-radius:8px;margin-top:12px;display:block"></canvas>
+
+        <div style="margin-top:12px">
+          <button class="btn" id="shootBtn">Kick</button>
+          <button class="ghost" id="resetBtn">Reset</button>
+        </div>
+
+        <p id="gameMessage" class="muted" style="margin-top:10px"></p>
+      </div>
+    </section>
+
+    <!-- newsletter (Formspree placeholder) -->
+    <section id="subscribe" class="reveal">
+      <div class="sectionInner center">
+        <h2>Subscribe for Updates</h2>
+        <p class="muted">Get match alerts, highlights and Goalhaus news to your inbox.</p>
+
+        <!-- replace action with your Formspree link -->
+        <form action="https://formspree.io/f/yourformid" method="POST" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+          <input name="email" type="email" placeholder="your email" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);min-width:220px;background:transparent;color:#fff">
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+        <p class="muted" style="margin-top:8px">We respect your privacy — no spam.</p>
+      </div>
+    </section>
+
+    <!-- about -->
+    <section id="about" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">About Goalhaus</h2>
+        <p class="muted" style="max-width:900px;margin:12px auto 0">
+          Goalhaus is a fan-first football hub built by Scribe Haus. It brings live scores, fixtures, highlights and playful fan features together in one place — designed to feel friendly, fast and joyful for fans everywhere.
+        </p>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="reveal" style="margin-top:22px">
+      <div class="wrap">
+        <p style="margin-bottom:8px">© 2025 Goalhaus · Built by <a href="https://akosuaaddaebuapim-hash.github.io/Scribe-Haus/" target="_blank" rel="noreferrer">Scribe Haus</a></p>
+        <p class="muted">Made with ❤️ for football fans</p>
+      </div>
+    </footer>
+
+  </div> <!-- end wrap -->
+
+  <!-- -------------------------
+       SCRIPTS: reveal animations, poll, penalty game
+       ------------------------- -->
+  <script>
+    // reveal-on-scroll using IntersectionObserver
+    (function(){
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if(e.isIntersecting) e.target.classList.add('is-visible');
+        });
+      }, {threshold: 0.12});
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+
+    // simple poll (local only)
+    const pollCounts = { 'Man City':0, 'Liverpool':0, 'Arsenal':0, 'Other':0 };
+    function vote(choice){
+      pollCounts[choice] = (pollCounts[choice] || 0) + 1;
+      const total = Object.values(pollCounts).reduce((s,n)=>s+n,0);
+      const pct = Math.round((pollCounts[choice]/(total||1))*100);
+      document.getElementById('pollResult').textContent = `${choice} — ${pollCounts[choice]} votes (${pct}%)`;
+    }
+
+    // penalty shootout game
+    (function(){
+      const canvas = document.getElementById('penaltyCanvas');
+      const ctx = canvas.getContext('2d');
+      const shootBtn = document.getElementById('shootBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const msg = document.getElementById('gameMessage');
+
+      const W = canvas.width, H = canvas.height;
+      let keeperX = W/2 - 20, keeperY = 40;
+      let ballX = W/2, ballY = H - 30;
+      let animId = null;
+      let inPlay = false;
+
+      function drawScene(){
+        ctx.clearRect(0,0,W,H);
+        // ground
+        ctx.fillStyle = '#0b0b0b';
+        ctx.fillRect(0,0,W,H);
+        // goal (simple)
+        ctx.strokeStyle = '#c9a83a';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(W/2 - 120, 30, 240, 120);
+        // keeper
+        ctx.fillStyle = '#c94a4a';
+        ctx.beginPath();
+        ctx.arc(keeperX + 20, keeperY + 20, 18, 0, Math.PI*2);
+        ctx.fill();
+        // ball
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, 10, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      function reset(){
+        inPlay = false;
+        keeperX = W/2 - 20; keeperY = 40;
+        ballX = W/2; ballY = H - 30;
+        msg.textContent = '';
+        drawScene();
+      }
+
+      function animateKeeper(toX, duration=700){
+        const startX = keeperX;
+        const delta = toX - startX;
+        const start = performance.now();
+        return new Promise(res=>{
+          function step(now){
+            const t = Math.min((now-start)/duration,1);
+            keeperX = startX + delta * easeOutCubic(t);
+            drawScene();
+            if(t<1) requestAnimationFrame(step); else res();
+          }
+          requestAnimationFrame(step);
+        });
+      }
+
+      function animateBall(targetX, targetY, duration=700){
+        const startX = ballX, startY = ballY;
+        const dx = targetX - startX, dy = targetY - startY;
+        const start = performance.now();
+        return new Promise(res=>{
+          function step(now){
+            const t = Math.min((now-start)/duration,1);
+            // ease for arc
+            ballX = startX + dx * t;
+            // simple parabolic arc
+            const peak = -80; // upward peak
+            ballY = startY + dy * t + peak * (4 * (t - t*t));
+            drawScene();
+            if(t<1) requestAnimationFrame(step); else res();
+          }
+          requestAnimationFrame(step);
+        });
+      }
+
+      function easeOutCubic(t){ return (--t)*t*t+1; }
+
+      async function shoot(){
+        if(inPlay) return;
+        inPlay = true;
+        msg.textContent = '...kicking';
+        // choose random target and keeper reaction
+        const targetX = (Math.random()*1.2 - 0.1) * 240 + (W/2 - 120); // within goal
+        const keeperMove = (Math.random() < 0.55); // keeper tries to save roughly half the time
+        const keeperTarget = keeperMove ? targetX - 10 + (Math.random()*40 - 20) : W/2 - 20 + (Math.random()*80 - 40);
+
+        // animate keeper and ball (keeper moves slightly earlier)
+        animateKeeper(keeperTarget, 600);
+        await animateBall(targetX, 70, 700); // ball to crossbar area
+
+        // determine goal vs save by closeness
+        const dist = Math.abs((keeperX+20) - targetX);
+        const saved = dist < 28 && keeperMove;
+        if(saved){
+          msg.textContent = 'Saved! Keeper prevented the goal 🧤';
+        } else {
+          msg.textContent = 'Goal! 🎉';
+        }
+        // small pause, reset ball position
+        setTimeout(()=>{ reset(); }, 1200);
+      }
+
+      shootBtn.addEventListener('click', shoot);
+      resetBtn.addEventListener('click', reset);
+
+      // initial draw
+      reset();
+    })();
+
+    // small accessibility: reveal elements on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.reveal').forEach((el,i)=>{
+        setTimeout(()=> el.classList.add('is-visible'), 100*i + 100);
+      });
+    });
+
+  </script>
 
 </body>
 </html>
