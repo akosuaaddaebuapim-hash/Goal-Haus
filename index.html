@@ -3,141 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GoalHaus - Live Football Hub</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body class="bg-gray-100 font-sans">
+  <title>GoalHaus</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
 
-  <!-- Navbar -->
-  <header class="bg-black text-gold p-4 sticky top-0 z-50 shadow-md">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-yellow-400">⚽ GoalHaus</h1>
-      <nav class="space-x-4 text-white">
-        <a href="#live" class="hover:text-yellow-400">Live Scores</a>
-        <a href="#fixtures" class="hover:text-yellow-400">Fixtures</a>
-        <a href="#standings" class="hover:text-yellow-400">Standings</a>
-        <a href="#news" class="hover:text-yellow-400">News</a>
-        <a href="#fans" class="hover:text-yellow-400">Fan Zone</a>
-      </nav>
-    </div>
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, #000, #222);
+      color: gold;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 3px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #f5f5f5;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: gold;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid gold;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,215,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .table th, .table td {
+      padding: 0.8rem;
+      border: 1px solid #444;
+      text-align: center;
+    }
+
+    .table th {
+      background: gold;
+      color: #000;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    form input, form button {
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    form input {
+      background: #333;
+      color: #f5f5f5;
+    }
+
+    form button {
+      background: gold;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #111;
+      color: #999;
+      margin-top: 3rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>⚽ GoalHaus</h1>
+    <p>Your home for live football scores, fixtures, highlights & more</p>
   </header>
 
-  <!-- Hero Section -->
-  <section class="bg-yellow-400 text-black text-center py-12">
-    <h2 class="text-4xl font-extrabold">Your Global Football Hub 🌍</h2>
-    <p class="mt-2 text-lg">Live scores, fixtures, standings, news & fan vibes — all in one place.</p>
+  <section>
+    <h2>Live Scores</h2>
+    <div class="card">Manchester United 2 - 1 Chelsea (FT)</div>
+    <div class="card">Real Madrid 3 - 0 Barcelona (75')</div>
+    <div class="card">PSG 1 - 1 Bayern Munich (60')</div>
   </section>
 
-  <!-- Live Scores -->
-  <section id="live" class="max-w-6xl mx-auto py-12 px-4">
-    <h3 class="text-2xl font-bold mb-4 text-gray-800">⚡ Live Scores</h3>
-    <div id="liveScores" class="bg-white shadow rounded p-4">
-      <p class="text-gray-500">Loading live scores...</p>
-    </div>
+  <section>
+    <h2>Upcoming Fixtures</h2>
+    <div class="card">Arsenal vs Liverpool - Sept 1, 2025</div>
+    <div class="card">Juventus vs AC Milan - Sept 2, 2025</div>
+    <div class="card">Dortmund vs Leipzig - Sept 3, 2025</div>
   </section>
 
-  <!-- Fixtures -->
-  <section id="fixtures" class="bg-gray-200 py-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-2xl font-bold mb-4 text-gray-800">📅 Upcoming Fixtures</h3>
-      <div id="fixturesList" class="bg-white shadow rounded p-4">
-        <p class="text-gray-500">Loading fixtures...</p>
-      </div>
-    </div>
+  <section>
+    <h2>League Table</h2>
+    <table class="table">
+      <tr><th>Pos</th><th>Team</th><th>Pts</th></tr>
+      <tr><td>1</td><td>Arsenal</td><td>18</td></tr>
+      <tr><td>2</td><td>Liverpool</td><td>16</td></tr>
+      <tr><td>3</td><td>Man City</td><td>15</td></tr>
+      <tr><td>4</td><td>Chelsea</td><td>13</td></tr>
+    </table>
   </section>
 
-  <!-- Standings -->
-  <section id="standings" class="max-w-6xl mx-auto py-12 px-4">
-    <h3 class="text-2xl font-bold mb-4 text-gray-800">🏆 League Standings</h3>
-    <div id="standingsTable" class="bg-white shadow rounded p-4 overflow-x-auto">
-      <p class="text-gray-500">Loading standings...</p>
-    </div>
+  <section>
+    <h2>Top Players</h2>
+    <div class="card">Erling Haaland - 8 Goals</div>
+    <div class="card">Mohamed Salah - 6 Goals</div>
+    <div class="card">Bukayo Saka - 5 Assists</div>
   </section>
 
-  <!-- News -->
-  <section id="news" class="bg-gray-200 py-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-2xl font-bold mb-4 text-gray-800">📰 Latest Football News</h3>
-      <div id="newsFeed" class="grid md:grid-cols-2 gap-4">
-        <p class="text-gray-500">Fetching football news...</p>
-      </div>
-    </div>
+  <section>
+    <h2>Highlights</h2>
+    <iframe src="https://www.youtube.com/embed/Z6w8K8vQwtY" title="Football Highlights"></iframe>
+    <iframe src="https://www.youtube.com/embed/8ugJjUrDXSc" title="Match Goals"></iframe>
   </section>
 
-  <!-- Fan Zone -->
-  <section id="fans" class="max-w-6xl mx-auto py-12 px-4">
-    <h3 class="text-2xl font-bold mb-4 text-gray-800">🎤 Fan Zone</h3>
-    <div class="bg-white shadow rounded p-4">
-      <form id="fanForm" class="flex gap-2 mb-4">
-        <input type="text" id="fanMessage" placeholder="Share your thoughts..." class="flex-1 border rounded p-2">
-        <button type="submit" class="bg-yellow-400 px-4 py-2 rounded font-bold">Post</button>
+  <section>
+    <h2>Fan Zone</h2>
+    <div class="card">
+      <p>Who will win the Premier League 2025?</p>
+      <form>
+        <input type="radio" name="vote"> Arsenal<br>
+        <input type="radio" name="vote"> Liverpool<br>
+        <input type="radio" name="vote"> Man City<br>
+        <button type="submit">Vote</button>
       </form>
-      <ul id="fanWall" class="space-y-2">
-        <li class="text-gray-500">Be the first to post something!</li>
-      </ul>
+    </div>
+    <div class="card">
+      <h3>⭐ Fan of the Week</h3>
+      <p>Shoutout to James in London for his amazing GoalHaus fan art!</p>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-black text-white text-center py-6 mt-12">
-    <p>⚽ GoalHaus — Built by <a href="https://akosuaaddaebuapim-hash.github.io/Scribe-Haus/" class="text-yellow-400 font-bold">Scribe Haus</a></p>
+  <section>
+    <h2>Subscribe for Updates</h2>
+    <form>
+      <input type="email" placeholder="Enter your email">
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>About GoalHaus</h2>
+    <p>GoalHaus brings the world of football to your fingertips — live scores, fixtures, tables, highlights, and a community of fans who love the game. Whether you’re cheering for your local team or following international leagues, this is your home for football passion.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 GoalHaus | Built by Scribe Haus Studio</p>
   </footer>
-
-  <!-- JS (Fake Data for Now) -->
-  <script>
-    // Dummy Live Scores
-    const liveScores = [
-      { match: "Barcelona vs Real Madrid", score: "2 - 1 (78')" },
-      { match: "Chelsea vs Man United", score: "0 - 0 (45')" },
-      { match: "PSG vs Bayern", score: "1 - 3 (60')" }
-    ];
-    document.getElementById("liveScores").innerHTML =
-      liveScores.map(m => `<p class="mb-2"><b>${m.match}</b>: ${m.score}</p>`).join("");
-
-    // Dummy Fixtures
-    const fixtures = [
-      "Liverpool vs Arsenal — Tomorrow, 18:00",
-      "Juventus vs Inter — Saturday, 20:45",
-      "Dortmund vs Leipzig — Sunday, 16:30"
-    ];
-    document.getElementById("fixturesList").innerHTML =
-      fixtures.map(f => `<p class="mb-2">📌 ${f}</p>`).join("");
-
-    // Dummy Standings
-    const standings = [
-      { pos: 1, team: "Man City", pts: 45 },
-      { pos: 2, team: "Arsenal", pts: 43 },
-      { pos: 3, team: "Liverpool", pts: 40 }
-    ];
-    document.getElementById("standingsTable").innerHTML = `
-      <table class="w-full text-left border">
-        <tr><th class="p-2 border">Pos</th><th class="p-2 border">Team</th><th class="p-2 border">Pts</th></tr>
-        ${standings.map(s => `<tr><td class="p-2 border">${s.pos}</td><td class="p-2 border">${s.team}</td><td class="p-2 border">${s.pts}</td></tr>`).join("")}
-      </table>
-    `;
-
-    // Dummy News
-    const news = [
-      { title: "Messi scores a hat-trick!", link: "#" },
-      { title: "Champions League quarterfinals set", link: "#" },
-      { title: "Transfer window heating up", link: "#" }
-    ];
-    document.getElementById("newsFeed").innerHTML =
-      news.map(n => `<a href="${n.link}" class="block p-4 bg-white rounded shadow hover:bg-yellow-100">${n.title}</a>`).join("");
-
-    // Fan Zone
-    const fanForm = document.getElementById("fanForm");
-    const fanWall = document.getElementById("fanWall");
-    fanForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const msg = document.getElementById("fanMessage").value;
-      if(msg.trim()){
-        fanWall.innerHTML = `<li class="p-2 bg-gray-100 rounded">${msg}</li>` + fanWall.innerHTML;
-        document.getElementById("fanMessage").value = "";
-      }
-    });
-  </script>
 
 </body>
 </html>
