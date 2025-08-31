@@ -3,33 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoalHaus - Live Football Scores, Highlights & News</title>
-<meta name="description" content="GoalHaus brings you live football scores, daily highlights, football news, and mini football games in a sleek black & bronze interface.">
-<meta name="keywords" content="football, live scores, soccer news, highlights, GoalHaus, sports, Scribe Haus">
+<title>GoalHaus - Live Football Portal</title>
+<meta name="description" content="GoalHaus brings live football scores, fixtures, results, latest highlights, news, and mini games in a sleek black & bronze interface.">
+<meta name="keywords" content="football, soccer, live scores, fixtures, sports news, highlights, GoalHaus, Scribe Haus">
 <meta property="og:title" content="GoalHaus - Live Football Scores & News">
-<meta property="og:description" content="Stay updated with live football scores, daily YouTube highlights, football news, and mini games with GoalHaus.">
+<meta property="og:description" content="Stay updated with live football scores, upcoming fixtures, results, daily highlights, news, and mini games with GoalHaus.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yourwebsite.com">
 <meta property="og:image" content="https://images.unsplash.com/photo-1601162057312-1e06d0c5fef3?auto=format&fit=crop&w=1350&q=80">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <style>
-body { font-family: 'Arial', sans-serif; background:#111; color:#fff; margin:0; }
+/* ---------- General Body & Fonts ---------- */
+body { margin:0; font-family: 'Arial', sans-serif; background:#111 url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed; background-size:cover; color:#fff; }
 a { color:#CD7F32; text-decoration:none; }
-h1,h2,h3 { color:#CD7F32; margin-bottom:20px; }
-header { background:#000; padding:25px; text-align:center; font-size:2.5rem; font-weight:bold; color:#CD7F32; text-transform:uppercase; letter-spacing:2px; }
-.slider { position:relative; overflow:hidden; max-height:450px; margin-bottom:50px; border-bottom:4px solid #CD7F32; border-radius:8px; }
-.slider img { width:100%; height:450px; object-fit:cover; transition:1s ease-in-out; }
-.section { padding:50px 20px; }
+h1,h2,h3,h4 { color:#CD7F32; margin-bottom:15px; }
+
+/* ---------- Header ---------- */
+header { background:rgba(0,0,0,0.85); padding:25px; text-align:center; font-size:2.5rem; font-weight:bold; letter-spacing:2px; color:#CD7F32; text-transform:uppercase; text-shadow:0 0 10px #CD7F32; }
+
+/* ---------- Slider ---------- */
+.slider { position:relative; overflow:hidden; max-height:450px; margin-bottom:50px; border-bottom:4px solid #CD7F32; border-radius:8px; box-shadow:0 0 20px #CD7F32; }
+.slider img { width:100%; height:450px; object-fit:cover; transition:1s ease-in-out; border-radius:8px; }
+
+/* ---------- Sections ---------- */
+.section { padding:50px 20px; background:rgba(0,0,0,0.7); margin:20px auto; border-radius:12px; box-shadow:0 0 20px #CD7F32; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.card { background:#1A1A1A; padding:20px; border-radius:12px; transition:0.3s; }
-.card:hover { transform:scale(1.05); box-shadow:0 0 20px #CD7F32; }
+
+/* ---------- Cards ---------- */
+.card { background:#1A1A1A; padding:20px; border-radius:12px; transition:0.3s; box-shadow:0 0 10px #CD7F32; }
+.card:hover { transform:scale(1.05); box-shadow:0 0 25px #CD7F32; }
+
+/* ---------- Buttons ---------- */
 button { padding:12px 25px; background:#CD7F32; border:none; cursor:pointer; border-radius:6px; font-weight:bold; color:#000; transition:0.3s; }
-button:hover { transform:scale(1.05); }
-footer { background:#000; text-align:center; padding:50px 20px; border-top:2px solid #CD7F32; }
+button:hover { transform:scale(1.05); box-shadow:0 0 15px #CD7F32; }
+
+/* ---------- Footer ---------- */
+footer { background:rgba(0,0,0,0.85); text-align:center; padding:50px 20px; border-top:2px solid #CD7F32; }
 input[type="email"] { padding:12px; border-radius:6px; border:none; margin-right:10px; width:250px; }
-footer p { margin-top:15px; font-size:0.9rem; color:#CD7F32; }
+
+/* ---------- Mini Game ---------- */
 #gameCanvas { background:#000; display:block; margin:20px auto; border:2px solid #CD7F32; border-radius:8px; }
+
+/* ---------- Animations ---------- */
+@keyframes fadeInUp { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:translateY(0);} }
+[data-aos] { animation:fadeInUp 1s ease forwards; opacity:0; }
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){ .grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));} }
 </style>
 </head>
 <body>
@@ -37,6 +58,7 @@ footer p { margin-top:15px; font-size:0.9rem; color:#CD7F32; }
 <header>GoalHaus</header>
 
 <main>
+
 <!-- Slider -->
 <section class="slider" id="slider">
   <img src="https://images.unsplash.com/photo-1601162057312-1e06d0c5fef3?auto=format&fit=crop&w=1350&q=80" alt="Football Slide 1" loading="lazy">
@@ -48,6 +70,18 @@ footer p { margin-top:15px; font-size:0.9rem; color:#CD7F32; }
   <div id="scoresContainer" class="grid"></div>
 </section>
 
+<!-- Upcoming Fixtures -->
+<section class="section" id="fixtures" data-aos="fade-up">
+  <h2>Upcoming Fixtures</h2>
+  <div id="fixturesContainer" class="grid"></div>
+</section>
+
+<!-- Match Results -->
+<section class="section" id="results" data-aos="fade-up">
+  <h2>Recent Results</h2>
+  <div id="resultsContainer" class="grid"></div>
+</section>
+
 <!-- Football News -->
 <section class="section" id="news" data-aos="fade-up">
   <h2>Football News</h2>
@@ -56,7 +90,7 @@ footer p { margin-top:15px; font-size:0.9rem; color:#CD7F32; }
 
 <!-- YouTube Highlights -->
 <section class="section" id="highlights" data-aos="fade-up">
-  <h2>Daily Highlights</h2>
+  <h2>Latest Highlights</h2>
   <div id="highlightsContainer" class="grid"></div>
 </section>
 
@@ -66,6 +100,7 @@ footer p { margin-top:15px; font-size:0.9rem; color:#CD7F32; }
   <canvas id="gameCanvas" width="400" height="300"></canvas>
   <button onclick="kickBall()">Kick!</button>
 </section>
+
 </main>
 
 <!-- Footer -->
@@ -81,11 +116,12 @@ footer p { margin-top:15px; font-size:0.9rem; color:#CD7F32; }
 // ---------- AOS Animations ----------
 AOS.init();
 
-// ---------- Slider (Daily Change) ----------
+// ---------- Slider ----------
 const slides = [
 "https://images.unsplash.com/photo-1601162057312-1e06d0c5fef3?auto=format&fit=crop&w=1350&q=80",
 "https://images.pexels.com/photos/1164227/pexels-photo-1164227.jpeg?auto=compress&cs=tinysrgb&w=1350",
-"https://images.unsplash.com/photo-1504461924302-6d1b3b2f6d72?auto=format&fit=crop&w=1350&q=80"
+"https://images.unsplash.com/photo-1504461924302-6d1b3b2f6d72?auto=format&fit=crop&w=1350&q=80",
+"https://images.pexels.com/photos/265380/pexels-photo-265380.jpeg?auto=compress&cs=tinysrgb&w=1350"
 ];
 let currentSlide=0;
 setInterval(()=>{
@@ -100,7 +136,7 @@ function subscribe(){
   else alert('Please enter a valid email.');
 }
 
-// ---------- Live Scores & Team Logos (BBC RSS) ----------
+// ---------- Live Scores ----------
 async function fetchScores(){
   try{
     const res=await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/football/rss.xml');
@@ -116,54 +152,10 @@ async function fetchScores(){
   }catch(e){console.error(e);}
 }
 fetchScores();
-setInterval(fetchScores,60000); // auto-refresh every minute
+setInterval(fetchScores,60000);
 
-// ---------- Football News (BBC RSS) ----------
-async function fetchNews(){
-  try{
-    const res=await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/football/rss.xml');
-    const data=await res.json();
-    const container=document.getElementById('newsContainer');
-    container.innerHTML=data.items.slice(0,8).map(item=>`
-      <div class="card">
-        <h3>${item.title}</h3>
-        <p>${item.pubDate.split(" ")[0]}</p>
-        <a href="${item.link}" target="_blank">Read More</a>
-      </div>
-    `).join('');
-  }catch(e){console.error(e);}
-}
-fetchNews();
-
-// ---------- YouTube Highlights ----------
-const highlightVideos = [
-"https://www.youtube.com/embed/j0w1C4F9l3A",
-"https://www.youtube.com/embed/DuF3zG4h68U",
-"https://www.youtube.com/embed/Y1tYlHg9h9c"
-];
-const highlightContainer=document.getElementById('highlightsContainer');
-highlightContainer.innerHTML=highlightVideos.map(video=>`
-<div class="card">
-<iframe width="100%" height="200" src="${video}" frameborder="0" allowfullscreen></iframe>
-</div>
-`).join('');
-
-// ---------- Mini Game ----------
-const canvas=document.getElementById('gameCanvas');
-const ctx=canvas.getContext('2d');
-let ballX=200,ballY=250;
-function drawBall(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="#CD7F32";ctx.fillRect(150,50,100,10);
-  ctx.beginPath();ctx.arc(ballX,ballY,10,0,Math.PI*2);ctx.fillStyle="#fff";ctx.fill();ctx.closePath();
-}
-drawBall();
-function kickBall(){
-  let interval=setInterval(()=>{
-    ballY-=5;drawBall();
-    if(ballY<=60){clearInterval(interval);alert('Goal! ⚽');ballY=250;drawBall();}
-  },20);
-}
-</script>
-</body>
-</html>
+// ---------- Upcoming Fixtures ----------
+async function fetchFixtures(){
+  const fixtures = [
+    {match:"Arsenal vs Chelsea", date:"2025-09-05", logo:"https://raw.githubusercontent.com/luukhopman/football-logos/master/logos/1/chelsea.png"},
+    {match:"Manchester United
