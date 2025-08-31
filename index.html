@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GoalHaus - Your Ultimate Free Sports Portal</title>
-<meta name="description" content="GoalHaus brings you live scores, fixtures, results, highlights, news, and mini-games for football, basketball, tennis, and more. Free and fully responsive.">
+<meta name="description" content="GoalHaus brings live scores, fixtures, results, highlights, news, and mini-games for football, basketball, tennis, and more. Free and fully responsive.">
 <meta name="keywords" content="sports, live scores, football, basketball, tennis, highlights, news, GoalHaus, Scribe Haus, mini-games">
 <meta property="og:title" content="GoalHaus - Your Ultimate Free Sports Portal">
 <meta property="og:description" content="Stay updated with live sports scores, news, highlights, and interactive mini-games.">
@@ -14,37 +14,37 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <style>
-/* ----------------- General Styles ----------------- */
-body {margin:0; font-family: 'Arial', sans-serif; background:#111 url('https://images.pexels.com/photos/3991876/pexels-photo-3991876.jpeg?auto=compress&cs=tinysrgb&w=1350') no-repeat center center fixed; background-size:cover; color:#fff;}
-a {color:#CD7F32; text-decoration:none;}
-h1,h2,h3,h4 {color:#CD7F32; margin-bottom:15px;}
-header {background:linear-gradient(90deg, #000 0%, #1A1A1A 50%, #000 100%); padding:25px; text-align:center; font-size:3rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; text-shadow:0 0 15px #CD7F32;}
-nav {background:#1A1A1A; display:flex; justify-content:center; gap:20px; padding:15px; flex-wrap:wrap;}
-nav button {background:#CD7F32; border:none; color:#000; padding:12px 25px; cursor:pointer; border-radius:6px; transition:0.3s;}
-nav button:hover, nav button.active {transform:scale(1.05); box-shadow:0 0 15px #CD7F32;}
-.section {padding:40px 20px; background:rgba(0,0,0,0.75); margin:20px auto; border-radius:12px; box-shadow:0 0 25px #CD7F32;}
-.table-container {overflow-x:auto;}
-table {width:100%; border-collapse:collapse; margin-bottom:25px;}
-th, td {padding:12px; text-align:center; border-bottom:1px solid #CD7F32;}
-th {background:#1A1A1A;}
-tr:hover {background:rgba(205,127,50,0.1);}
-.grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-.card {background:#1A1A1A; padding:20px; border-radius:12px; transition:0.3s; box-shadow:0 0 15px #CD7F32;}
-.card:hover {transform:scale(1.05); box-shadow:0 0 30px #CD7F32;}
-.slider {position:relative; overflow:hidden; max-height:350px; border-radius:8px; box-shadow:0 0 20px #CD7F32; margin-bottom:30px;}
-.slider img {width:100%; height:350px; object-fit:cover; transition:1s ease-in-out; border-radius:8px;}
-button {padding:12px 25px; background:#CD7F32; border:none; cursor:pointer; border-radius:6px; font-weight:bold; color:#000; transition:0.3s;}
-button:hover {transform:scale(1.05); box-shadow:0 0 15px #CD7F32;}
-footer {background:linear-gradient(90deg, #1A1A1A 0%, #000 50%, #1A1A1A 100%); text-align:center; padding:50px 20px; border-top:2px solid #CD7F32;}
-input[type="email"] {padding:12px; border-radius:6px; border:none; margin-right:10px; width:250px;}
-#gameCanvas, #basketballCanvas, #tennisCanvas {background:#000; display:block; margin:20px auto; border:2px solid #CD7F32; border-radius:8px;}
-.ads {background:#222; color:#CD7F32; text-align:center; padding:20px; margin:20px 0; border-radius:8px;}
-.news-ticker {background:#1A1A1A; padding:10px; overflow:hidden; white-space:nowrap; border-top:2px solid #CD7F32; border-bottom:2px solid #CD7F32; margin-bottom:20px;}
-.news-ticker span {display:inline-block; padding-right:50px; animation:scrollNews 20s linear infinite;}
-@keyframes scrollNews {0% {transform:translateX(100%);} 100% {transform:translateX(-100%);}}
-@keyframes fadeInUp {from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);}}
-[data-aos] {animation:fadeInUp 1s ease forwards; opacity:0;}
-@media(max-width:768px){.grid, .table-container{width:100%; overflow-x:auto;} nav{flex-direction:column;}}
+/* ---------- General Styles ---------- */
+body{margin:0;font-family:Arial,sans-serif;background:#111 url('https://images.pexels.com/photos/3991876/pexels-photo-3991876.jpeg?auto=compress&cs=tinysrgb&w=1350') no-repeat center center fixed;background-size:cover;color:#fff;}
+a{color:#CD7F32;text-decoration:none;}
+h1,h2,h3,h4{color:#CD7F32;margin-bottom:15px;}
+header{background:linear-gradient(90deg,#000 0%,#1A1A1A 50%,#000 100%);padding:30px;text-align:center;font-size:3rem;font-weight:bold;letter-spacing:3px;text-transform:uppercase;text-shadow:0 0 15px #CD7F32;}
+nav{background:#1A1A1A;display:flex;justify-content:center;gap:20px;padding:15px;flex-wrap:wrap;}
+nav button{background:#CD7F32;border:none;color:#000;padding:12px 25px;cursor:pointer;border-radius:6px;transition:0.3s;}
+nav button:hover,nav button.active{transform:scale(1.05);box-shadow:0 0 15px #CD7F32;}
+.section{padding:40px 20px;background:rgba(0,0,0,0.75);margin:20px auto;border-radius:12px;box-shadow:0 0 25px #CD7F32;}
+.table-container{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;margin-bottom:25px;}
+th,td{padding:12px;text-align:center;border-bottom:1px solid #CD7F32;}
+th{background:#1A1A1A;}
+tr:hover{background:rgba(205,127,50,0.1);}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.card{background:#1A1A1A;padding:20px;border-radius:12px;transition:0.3s;box-shadow:0 0 15px #CD7F32;}
+.card:hover{transform:scale(1.05);box-shadow:0 0 30px #CD7F32;}
+.slider{position:relative;overflow:hidden;max-height:350px;border-radius:8px;box-shadow:0 0 20px #CD7F32;margin-bottom:30px;}
+.slider img{width:100%;height:350px;object-fit:cover;transition:1s ease-in-out;border-radius:8px;}
+button{padding:12px 25px;background:#CD7F32;border:none;cursor:pointer;border-radius:6px;font-weight:bold;color:#000;transition:0.3s;}
+button:hover{transform:scale(1.05);box-shadow:0 0 15px #CD7F32;}
+footer{background:linear-gradient(90deg,#1A1A1A 0%,#000 50%,#1A1A1A 100%);text-align:center;padding:50px 20px;border-top:2px solid #CD7F32;}
+input[type="email"]{padding:12px;border-radius:6px;border:none;margin-right:10px;width:250px;}
+#gameCanvas,#basketballCanvas,#tennisCanvas{background:#000;display:block;margin:20px auto;border:2px solid #CD7F32;border-radius:8px;}
+.ads{background:#222;color:#CD7F32;text-align:center;padding:20px;margin:20px 0;border-radius:8px;}
+.news-ticker{background:#1A1A1A;padding:10px;overflow:hidden;white-space:nowrap;border-top:2px solid #CD7F32;border-bottom:2px solid #CD7F32;margin-bottom:20px;}
+.news-ticker span{display:inline-block;padding-right:50px;animation:scrollNews 20s linear infinite;}
+@keyframes scrollNews{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+[data-aos]{animation:fadeInUp 1s ease forwards;opacity:0;}
+@media(max-width:768px){.grid,.table-container{width:100%;overflow-x:auto;} nav{flex-direction:column;}}
 </style>
 </head>
 <body>
@@ -60,48 +60,278 @@ input[type="email"] {padding:12px; border-radius:6px; border:none; margin-right:
 <button class="tabBtn" onclick="openTab('tennis')">Tennis</button>
 </nav>
 
-<!-- Tabs Content -->
+<!-- Football Tab -->
 <div id="football" class="tabContent">
 <section class="section" data-aos="fade-up">
 <h2>Live Scores - Football</h2>
-<div class="table-container"><table id="footballLive"><thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+<div class="table-container">
+<table id="footballLive">
+<thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>12:00</td><td>Arsenal</td><td>2 - 1</td><td>Chelsea</td><td>FT</td></tr>
+<tr><td>14:30</td><td>Liverpool</td><td>1 - 1</td><td>Man City</td><td>HT</td></tr>
+<tr><td>16:00</td><td>PSG</td><td>3 - 0</td><td>Marseille</td><td>FT</td></tr>
+<tr><td>18:45</td><td>Real Madrid</td><td>0 - 0</td><td>Barcelona</td><td>Live</td></tr>
+<tr><td>20:00</td><td>Bayern</td><td>1 - 2</td><td>Dortmund</td><td>FT</td></tr>
+<tr><td>21:30</td><td>Juventus</td><td>2 - 2</td><td>Inter</td><td>HT</td></tr>
+<tr><td>22:15</td><td>AC Milan</td><td>1 - 0</td><td>Napoli</td><td>Live</td></tr>
+<tr><td>23:00</td><td>Ajax</td><td>4 - 1</td><td>PSV</td><td>FT</td></tr>
+<tr><td>13:00</td><td>Tottenham</td><td>0 - 3</td><td>Everton</td><td>FT</td></tr>
+<tr><td>15:00</td><td>Man United</td><td>2 - 2</td><td>Leeds</td><td>HT</td></tr>
+</tbody>
+</table>
+</div>
 </section>
+
 <section class="section" data-aos="fade-up">
 <h2>Upcoming Fixtures - Football</h2>
-<div class="table-container"><table id="footballFixtures"><thead><tr><th>Date</th><th>Match</th></tr></thead><tbody></tbody></table></div>
+<div class="table-container">
+<table id="footballFixtures">
+<thead><tr><th>Date</th><th>Match</th></tr></thead>
+<tbody>
+<tr><td>01 Sep</td><td>Arsenal vs Liverpool</td></tr>
+<tr><td>01 Sep</td><td>Chelsea vs Man City</td></tr>
+<tr><td>02 Sep</td><td>PSG vs Lyon</td></tr>
+<tr><td>02 Sep</td><td>Real Madrid vs Atletico</td></tr>
+<tr><td>03 Sep</td><td>Bayern vs Leipzig</td></tr>
+<tr><td>03 Sep</td><td>Juventus vs Roma</td></tr>
+<tr><td>04 Sep</td><td>Barcelona vs Sevilla</td></tr>
+<tr><td>04 Sep</td><td>Napoli vs Lazio</td></tr>
+<tr><td>05 Sep</td><td>Ajax vs Feyenoord</td></tr>
+<tr><td>05 Sep</td><td>PSV vs Utrecht</td></tr>
+</tbody>
+</table>
+</div>
 </section>
+
 <section class="section" data-aos="fade-up">
 <h2>Recent Results - Football</h2>
-<div class="table-container"><table id="footballResults"><thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead><tbody></tbody></table></div>
-</section>
+<div class="table-container">
+<table id="footballResults">
+<thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead>
+<tbody>
+<tr><td>28 Aug</td><td>Arsenal vs Chelsea</td><td>2 - 1</td></tr>
+<tr><td>28 Aug</td><td>Liverpool vs Man City</td><td>1 - 1</td></tr>
+<tr><td>27 Aug</td><td>PSG vs Marseille</td><td>3 - 0</td></tr>
+<tr><td>27 Aug</td><td>Real Madrid vs Barcelona</td><td>0 - 0</td></tr>
+<tr><td>26 Aug</td><td>Bayern vs Dortmund</td><td>1 - 2</td></tr>
+<tr><td>26 Aug</td><td>Juventus vs Inter</td><td>2 - 2</td></tr>
+<tr><td>25 Aug</td><td>AC Milan vs Napoli</td><td>1 - 0</td></tr>
+<tr><td>25 Aug</td><td>Ajax vs PSV</td><td>4 - 1</td></tr>
+<tr><td>24 Aug</td><td>Tottenham vs Everton</td><td>0 - 3</td></tr>
+<tr><td>24 Aug</td><td>Man United vs Leeds</td><td>2 - 2</td></tr>
+</tbody>
+</table>
 </div>
+</section>
 
+<!-- FOOTBALL END -->
+
+<!-- Basketball Tab -->
 <div id="basketball" class="tabContent" style="display:none;">
 <section class="section" data-aos="fade-up">
 <h2>Live Scores - Basketball</h2>
-<div class="table-container"><table id="basketballLive"><thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+<div class="table-container">
+<table id="basketballLive">
+<thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>12:00</td><td>Lakers</td><td>102 - 98</td><td>Bulls</td><td>FT</td></tr>
+<tr><td>14:30</td><td>Nets</td><td>110 - 110</td><td>Celtics</td><td>HT</td></tr>
+<tr><td>16:00</td><td>Heat</td><td>95 - 89</td><td>Bucks</td><td>FT</td></tr>
+<tr><td>18:45</td><td>Warriors</td><td>120 - 115</td><td>Suns</td><td>Live</td></tr>
+<tr><td>20:00</td><td>Clippers</td><td>105 - 99</td><td>Rockets</td><td>FT</td></tr>
+<tr><td>21:30</td><td>Knicks</td><td>98 - 102</td><td>76ers</td><td>HT</td></tr>
+<tr><td>22:15</td><td>Pacers</td><td>99 - 95</td><td>Hornets</td><td>Live</td></tr>
+<tr><td>23:00</td><td>Grizzlies</td><td>110 - 104</td><td>Trail Blazers</td><td>FT</td></tr>
+<tr><td>13:00</td><td>Thunder</td><td>100 - 107</td><td>Jazz</td><td>FT</td></tr>
+<tr><td>15:00</td><td>Pistons</td><td>95 - 92</td><td>Spurs</td><td>HT</td></tr>
+</tbody>
+</table>
+</div>
 </section>
+<!-- Basketball Fixtures & Results -->
 <section class="section" data-aos="fade-up">
 <h2>Upcoming Fixtures - Basketball</h2>
-<div class="table-container"><table id="basketballFixtures"><thead><tr><th>Date</th><th>Match</th></tr></thead><tbody></tbody></table></div>
+<div class="table-container">
+<table id="basketballFixtures">
+<thead><tr><th>Date</th><th>Match</th></tr></thead>
+<tbody>
+<tr><td>01 Sep</td><td>Lakers vs Nets</td></tr>
+<tr><td>01 Sep</td><td>Bulls vs Celtics</td></tr>
+<tr><td>02 Sep</td><td>Heat vs Bucks</td></tr>
+<tr><td>02 Sep</td><td>Warriors vs Suns</td></tr>
+<tr><td>03 Sep</td><td>Clippers vs Rockets</td></tr>
+<tr><td>03 Sep</td><td>Knicks vs 76ers</td></tr>
+<tr><td>04 Sep</td><td>Pacers vs Hornets</td></tr>
+<tr><td>04 Sep</td><td>Grizzlies vs Trail Blazers</td></tr>
+<tr><td>05 Sep</td><td>Thunder vs Jazz</td></tr>
+<tr><td>05 Sep</td><td>Pistons vs Spurs</td></tr>
+</tbody>
+</table>
+</div>
 </section>
+
 <section class="section" data-aos="fade-up">
 <h2>Recent Results - Basketball</h2>
-<div class="table-container"><table id="basketballResults"><thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead><tbody></tbody></table></div>
-</section>
+<div class="table-container">
+<table id="basketballResults">
+<thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead>
+<tbody>
+<tr><td>28 Aug</td><td>Lakers vs Bulls</td><td>102 - 98</td></tr>
+<tr><td>28 Aug</td><td>Nets vs Celtics</td><td>110 - 110</td></tr>
+<tr><td>27 Aug</td><td>Heat vs Bucks</td><td>95 - 89</td></tr>
+<tr><td>27 Aug</td><td>Warriors vs Suns</td><td>120 - 115</td></tr>
+<tr><td>26 Aug</td><td>Clippers vs Rockets</td><td>105 - 99</td></tr>
+<tr><td>26 Aug</td><td>Knicks vs 76ers</td><td>98 - 102</td></tr>
+<tr><td>25 Aug</td><td>Pacers vs Hornets</td><td>99 - 95</td></tr>
+<tr><td>25 Aug</td><td>Grizzlies vs Trail Blazers</td><td>110 - 104</td></tr>
+<tr><td>24 Aug</td><td>Thunder vs Jazz</td><td>100 - 107</td></tr>
+<tr><td>24 Aug</td><td>Pistons vs Spurs</td><td>95 - 92</td></tr>
+</tbody>
+</table>
 </div>
+</section>
 
+<!-- Tennis Tab -->
 <div id="tennis" class="tabContent" style="display:none;">
 <section class="section" data-aos="fade-up">
 <h2>Live Scores - Tennis</h2>
-<div class="table-container"><table id="tennisLive"><thead><tr><th>Time</th><th>Player A</th><th>Score</th><th>Player B</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+<div class="table-container">
+<table id="tennisLive">
+<thead><tr><th>Time</th><th>Player A</th><th>Score</th><th>Player B</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>12:00</td><td>Federer</td><td>3-1</td><td>Nadal</td><td>FT</td></tr>
+<tr><td>14:30</td><td>Djokovic</td><td>2-2</td><td>Medvedev</td><td>HT</td></tr>
+<tr><td>16:00</td><td>Thiem</td><td>1-2</td><td>Zverev</td><td>FT</td></tr>
+<tr><td>18:45</td><td>Tsitsipas</td><td>0-0</td><td>Ruud</td><td>Live</td></tr>
+<tr><td>20:00</td><td>Alcaraz</td><td>2-1</td><td>Berrettini</td><td>FT</td></tr>
+</tbody>
+</table>
+</div>
 </section>
+
 <section class="section" data-aos="fade-up">
 <h2>Upcoming Matches - Tennis</h2>
-<div class="table-container"><table id="tennisFixtures"><thead><tr><th>Date</th><th>Match</th></tr></thead><tbody></tbody></table></div>
+<div class="table-container">
+<table id="tennisFixtures">
+<thead><tr><th>Date</th><th>Match</th></tr></thead>
+<tbody>
+<tr><td>01 Sep</td><td>Federer vs Nadal</td></tr>
+<tr><td>01 Sep</td><td>Djokovic vs Medvedev</td></tr>
+<tr><td>02 Sep</td><td>Thiem vs Zverev</td></tr>
+<tr><td>02 Sep</td><td>Tsitsipas vs Ruud</td></tr>
+<tr><td>03 Sep</td><td>Alcaraz vs Berrettini</td></tr>
+<tr><td>03 Sep</td><td>Auger-Aliassime vs Shapovalov</td></tr>
+<tr><td>04 Sep</td><td>Rublev vs Kecmanovic</td></tr>
+<tr><td>04 Sep</td><td>Cilic vs Fognini</td></tr>
+<tr><td>05 Sep</td><td>Hurkacz vs Sinner</td></tr>
+<tr><td>05 Sep</td><td>Murray vs Evans</td></tr>
+</tbody>
+</table>
+</div>
 </section>
+
 <section class="section" data-aos="fade-up">
 <h2>Recent Results - Tennis</h2>
-<div class="table-container"><table id="tennisResults"><thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead><tbody></tbody></table></div>
+<div class="table-container">
+<table id="tennisResults">
+<thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead>
+<tbody>
+<tr><td>28 Aug</td><td>Federer vs Nadal</td><td>3-1</td></tr>
+<tr><td>28 Aug</td><td>Djokovic vs Medvedev</td><td>2-2</td></tr>
+<tr><td>27 Aug</td><td>Thiem vs Zverev</td><td>1-2</td></tr>
+<tr><td>27 Aug</td><td>Tsitsipas vs Ruud</td><td>0-0</td></tr>
+<tr><td>26 Aug</td><td>Alcaraz vs Berrettini</td><td>2-1</td></tr>
+<tr><td>26 Aug</td><td>Auger-Aliassime vs Shapovalov</td><td>3-2</td></tr>
+<tr><td>25 Aug</td><td>Rublev vs Kecmanovic</td><td>2-0</td></tr>
+<tr><td>25 Aug</td><td>Cilic vs Fognini</td><td>1-2</td></tr>
+<tr><td>24 Aug</td><td>Hurkacz vs Sinner</td><td>3-1</td></tr>
+<tr><td>24 Aug</td><td>Murray vs Evans</td><td>2-2</td></tr>
+</tbody>
+</table>
+</div>
 </section>
-</
+
+<!-- YouTube Highlights Carousel -->
+<section class="section" data-aos="fade-up">
+<h2>Daily YouTube Highlights</h2>
+<div class="slider" id="videoSlider">
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video 1" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="Video 2" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/L_jWHffIx5E" title="Video 3" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/eVTXPUF4Oz4" title="Video 4" frameborder="0" allowfullscreen></iframe>
+</div>
+</section>
+
+<!-- News Section -->
+<section class="section" data-aos="fade-up">
+<h2>Latest Sports News</h2>
+<div class="grid">
+<div class="card"><img src="https://images.pexels.com/photos/209841/pexels-photo-209841.jpeg?auto=compress&cs=tinysrgb&w=600" alt="News1"><h3>Arsenal wins thrilling match</h3><p>Arsenal defeated Chelsea in a 2-1 victory in front of 60,000 fans...</p></div>
+<div class="card"><img src="https://images.pexels.com/photos/225597/pexels-photo-225597.jpeg?auto=compress&cs=tinysrgb&w=600" alt="News2"><h3>NBA season starts</h3><p>The NBA season kicked off with spectacular games and record viewership...</p></div>
+<div class="card"><img src="https://images.pexels.com/photos/240277/pexels-photo-240277.jpeg?auto=compress&cs=tinysrgb&w=600" alt="News3"><h3>US Open Highlights</h3><p>Top tennis players dazzled the courts with incredible rallies and serves...</p></div>
+<div class="card"><img src="https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=600" alt="News4"><h3>Bayern Munich scores big</h3><p>Bayern Munich secured a 3-0 victory over Dortmund in an exciting match...</p></div>
+<div class="card"><img src="https://images.pexels.com/photos/205287/pexels-photo-205287.jpeg?auto=compress&cs=tinysrgb&w=600" alt="News5"><h3>Football Transfer News</h3><p>Major transfers are shaking up clubs across Europe before the deadline...</p></div>
+<div class="card"><img src="https://images.pexels.com/photos/164552/pexels-photo-164552.jpeg?auto=compress&cs=tinysrgb&w=600" alt="News6"><h3>Top Scorers This Week</h3><p>Check out the players who scored the most goals in the last matches...</p></div>
+</div>
+</section>
+
+<!-- Mini Games -->
+<section class="section" data-aos="fade-up">
+<h2>Mini-Games</h2>
+<canvas id="gameCanvas" width="400" height="400"></canvas>
+<canvas id="basketballCanvas" width="400" height="400"></canvas>
+<canvas id="tennisCanvas" width="400" height="400"></canvas>
+</section>
+
+<!-- Ads -->
+<section class="ads" data-aos="fade-up">
+<h3>Advertisement</h3>
+<p>Your Ad Here</p>
+</section>
+
+<!-- Footer -->
+<footer>
+<h2>Subscribe to GoalHaus Newsletter</h2>
+<input type="email" placeholder="Enter your email"><button>Subscribe</button>
+<p>&copy; 2025 GoalHaus | Powered by Scribe Haus</p>
+<p>Follow us: <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+AOS.init();
+
+// Tab switching
+function openTab(tabName){
+let i, tabcontent, tabbtns;
+tabcontent=document.getElementsByClassName("tabContent");
+for(i=0;i<tabcontent.length;i++){tabcontent[i].style.display="none";}
+tabbtns=document.getElementsByClassName("tabBtn");
+for(i=0;i<tabbtns.length;i++){tabbtns[i].classList.remove("active");}
+document.getElementById(tabName).style.display="block";
+event.currentTarget.classList.add("active");
+}
+
+// News Ticker
+const newsItems=["Arsenal wins thrilling match","NBA season starts","US Open Highlights","Bayern Munich scores big","Football Transfer News","Top Scorers This Week","Champions League Draw","New Records in Tennis"];
+const ticker=document.getElementById("newsTicker");
+ticker.innerHTML=newsItems.map(item=>`<span>${item}</span>`).join("");
+
+// YouTube Carousel
+let currentVideo=0;
+const videos=document.querySelectorAll("#videoSlider iframe");
+function showVideo(index){videos.forEach((v,i)=>v.style.display=(i===index?"block":"none"));}
+showVideo(currentVideo);
+setInterval(()=>{currentVideo=(currentVideo+1)%videos.length;showVideo(currentVideo);},8000);
+
+// Mini Games - Football Example
+const canvas=document.getElementById("gameCanvas");
+const ctx=canvas.getContext("2d");
+let ball={x:200,y:200,r:15,dx:2,dy:2};
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.beginPath();ctx.arc(ball.x,ball.y,ball.r,0,Math.PI*2);ctx.fillStyle="#CD7F32";ctx.fill();ctx.closePath();ball.x+=ball.dx;ball.y+=ball.dy;if(ball.x+ball.r>canvas.width||ball.x-ball.r<0)ball.dx*=-1;if(ball.y+ball.r>canvas.height||ball.y-ball.r<0)ball.dy*=-1;requestAnimationFrame(draw);}
+draw();
+</script>
+
+</body>
+                     </html>
