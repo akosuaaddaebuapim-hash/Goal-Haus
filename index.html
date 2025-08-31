@@ -3,50 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoalHaus - Live Sports Portal</title>
-<meta name="description" content="GoalHaus brings you live scores, fixtures, results, highlights, and news for football, basketball, tennis, and more.">
-<meta name="keywords" content="sports, live scores, football, basketball, tennis, highlights, news, GoalHaus, Scribe Haus">
-<meta property="og:title" content="GoalHaus - Live Sports Portal">
-<meta property="og:description" content="Stay updated with live sports scores, upcoming fixtures, recent results, news, and highlights.">
+<title>GoalHaus - Your Ultimate Free Sports Portal</title>
+<meta name="description" content="GoalHaus brings you live scores, fixtures, results, highlights, news, and mini-games for football, basketball, tennis, and more. Free and fully responsive.">
+<meta name="keywords" content="sports, live scores, football, basketball, tennis, highlights, news, GoalHaus, Scribe Haus, mini-games">
+<meta property="og:title" content="GoalHaus - Your Ultimate Free Sports Portal">
+<meta property="og:description" content="Stay updated with live sports scores, news, highlights, and interactive mini-games.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yourwebsite.com">
 <meta property="og:image" content="https://images.pexels.com/photos/3991876/pexels-photo-3991876.jpeg?auto=compress&cs=tinysrgb&w=1350">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <style>
-/* -------------- Body & Fonts ---------------- */
-body { margin:0; font-family:'Arial',sans-serif; background:#111 url('https://images.pexels.com/photos/3991876/pexels-photo-3991876.jpeg?auto=compress&cs=tinysrgb&w=1350') no-repeat center center fixed; background-size:cover; color:#fff;}
-a { color:#CD7F32; text-decoration:none;}
-h1,h2,h3,h4 { color:#CD7F32; margin-bottom:15px;}
-header { background:rgba(0,0,0,0.85); padding:20px; text-align:center; font-size:2.5rem; font-weight:bold; letter-spacing:2px; text-transform:uppercase; text-shadow:0 0 10px #CD7F32;}
-nav { background:#1A1A1A; display:flex; justify-content:center; gap:20px; padding:10px; flex-wrap:wrap;}
-nav button { background:#CD7F32; border:none; color:#000; padding:10px 20px; cursor:pointer; border-radius:6px; transition:0.3s;}
-nav button:hover, nav button.active { transform:scale(1.05); box-shadow:0 0 15px #CD7F32;}
-.section { padding:40px 20px; background:rgba(0,0,0,0.7); margin:20px auto; border-radius:12px; box-shadow:0 0 20px #CD7F32;}
-.table-container { overflow-x:auto;}
-table { width:100%; border-collapse:collapse; margin-bottom:20px;}
-th, td { padding:12px; text-align:center; border-bottom:1px solid #CD7F32;}
-th { background:#1A1A1A;}
-tr:hover { background:rgba(205,127,50,0.1);}
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-.card { background:#1A1A1A; padding:20px; border-radius:12px; transition:0.3s; box-shadow:0 0 10px #CD7F32;}
-.card:hover { transform:scale(1.05); box-shadow:0 0 25px #CD7F32;}
-.slider { position:relative; overflow:hidden; max-height:350px; border-radius:8px; box-shadow:0 0 20px #CD7F32; margin-bottom:30px;}
-.slider img { width:100%; height:350px; object-fit:cover; transition:1s ease-in-out; border-radius:8px;}
-button { padding:12px 25px; background:#CD7F32; border:none; cursor:pointer; border-radius:6px; font-weight:bold; color:#000; transition:0.3s;}
-button:hover { transform:scale(1.05); box-shadow:0 0 15px #CD7F32;}
-footer { background:rgba(0,0,0,0.85); text-align:center; padding:40px 20px; border-top:2px solid #CD7F32;}
-input[type="email"] { padding:12px; border-radius:6px; border:none; margin-right:10px; width:250px;}
-#gameCanvas { background:#000; display:block; margin:20px auto; border:2px solid #CD7F32; border-radius:8px;}
-.ads { background:#222; color:#CD7F32; text-align:center; padding:20px; margin:20px 0; border-radius:8px;}
-@keyframes fadeInUp { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:translateY(0);}}
-[data-aos] { animation:fadeInUp 1s ease forwards; opacity:0;}
-@media(max-width:768px){ .grid, .table-container{width:100%; overflow-x:auto;} nav{flex-direction:column;} }
+/* ----------------- General Styles ----------------- */
+body {margin:0; font-family: 'Arial', sans-serif; background:#111 url('https://images.pexels.com/photos/3991876/pexels-photo-3991876.jpeg?auto=compress&cs=tinysrgb&w=1350') no-repeat center center fixed; background-size:cover; color:#fff;}
+a {color:#CD7F32; text-decoration:none;}
+h1,h2,h3,h4 {color:#CD7F32; margin-bottom:15px;}
+header {background:linear-gradient(90deg, #000 0%, #1A1A1A 50%, #000 100%); padding:25px; text-align:center; font-size:3rem; font-weight:bold; letter-spacing:3px; text-transform:uppercase; text-shadow:0 0 15px #CD7F32;}
+nav {background:#1A1A1A; display:flex; justify-content:center; gap:20px; padding:15px; flex-wrap:wrap;}
+nav button {background:#CD7F32; border:none; color:#000; padding:12px 25px; cursor:pointer; border-radius:6px; transition:0.3s;}
+nav button:hover, nav button.active {transform:scale(1.05); box-shadow:0 0 15px #CD7F32;}
+.section {padding:40px 20px; background:rgba(0,0,0,0.75); margin:20px auto; border-radius:12px; box-shadow:0 0 25px #CD7F32;}
+.table-container {overflow-x:auto;}
+table {width:100%; border-collapse:collapse; margin-bottom:25px;}
+th, td {padding:12px; text-align:center; border-bottom:1px solid #CD7F32;}
+th {background:#1A1A1A;}
+tr:hover {background:rgba(205,127,50,0.1);}
+.grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
+.card {background:#1A1A1A; padding:20px; border-radius:12px; transition:0.3s; box-shadow:0 0 15px #CD7F32;}
+.card:hover {transform:scale(1.05); box-shadow:0 0 30px #CD7F32;}
+.slider {position:relative; overflow:hidden; max-height:350px; border-radius:8px; box-shadow:0 0 20px #CD7F32; margin-bottom:30px;}
+.slider img {width:100%; height:350px; object-fit:cover; transition:1s ease-in-out; border-radius:8px;}
+button {padding:12px 25px; background:#CD7F32; border:none; cursor:pointer; border-radius:6px; font-weight:bold; color:#000; transition:0.3s;}
+button:hover {transform:scale(1.05); box-shadow:0 0 15px #CD7F32;}
+footer {background:linear-gradient(90deg, #1A1A1A 0%, #000 50%, #1A1A1A 100%); text-align:center; padding:50px 20px; border-top:2px solid #CD7F32;}
+input[type="email"] {padding:12px; border-radius:6px; border:none; margin-right:10px; width:250px;}
+#gameCanvas, #basketballCanvas, #tennisCanvas {background:#000; display:block; margin:20px auto; border:2px solid #CD7F32; border-radius:8px;}
+.ads {background:#222; color:#CD7F32; text-align:center; padding:20px; margin:20px 0; border-radius:8px;}
+.news-ticker {background:#1A1A1A; padding:10px; overflow:hidden; white-space:nowrap; border-top:2px solid #CD7F32; border-bottom:2px solid #CD7F32; margin-bottom:20px;}
+.news-ticker span {display:inline-block; padding-right:50px; animation:scrollNews 20s linear infinite;}
+@keyframes scrollNews {0% {transform:translateX(100%);} 100% {transform:translateX(-100%);}}
+@keyframes fadeInUp {from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);}}
+[data-aos] {animation:fadeInUp 1s ease forwards; opacity:0;}
+@media(max-width:768px){.grid, .table-container{width:100%; overflow-x:auto;} nav{flex-direction:column;}}
 </style>
 </head>
 <body>
 
 <header>GoalHaus</header>
+
+<!-- News Ticker -->
+<div class="news-ticker" id="newsTicker"></div>
 
 <nav>
 <button class="tabBtn active" onclick="openTab('football')">Football</button>
@@ -54,220 +60,48 @@ input[type="email"] { padding:12px; border-radius:6px; border:none; margin-right
 <button class="tabBtn" onclick="openTab('tennis')">Tennis</button>
 </nav>
 
+<!-- Tabs Content -->
 <div id="football" class="tabContent">
 <section class="section" data-aos="fade-up">
 <h2>Live Scores - Football</h2>
-<div class="table-container">
-<table id="footballLive">
-<thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="footballLive"><thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead><tbody></tbody></table></div>
 </section>
-
 <section class="section" data-aos="fade-up">
 <h2>Upcoming Fixtures - Football</h2>
-<div class="table-container">
-<table id="footballFixtures">
-<thead><tr><th>Date</th><th>Match</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="footballFixtures"><thead><tr><th>Date</th><th>Match</th></tr></thead><tbody></tbody></table></div>
 </section>
-
 <section class="section" data-aos="fade-up">
 <h2>Recent Results - Football</h2>
-<div class="table-container">
-<table id="footballResults">
-<thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="footballResults"><thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead><tbody></tbody></table></div>
 </section>
 </div>
 
 <div id="basketball" class="tabContent" style="display:none;">
 <section class="section" data-aos="fade-up">
 <h2>Live Scores - Basketball</h2>
-<div class="table-container">
-<table id="basketballLive">
-<thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="basketballLive"><thead><tr><th>Time</th><th>Team A</th><th>Score</th><th>Team B</th><th>Status</th></tr></thead><tbody></tbody></table></div>
 </section>
-
 <section class="section" data-aos="fade-up">
 <h2>Upcoming Fixtures - Basketball</h2>
-<div class="table-container">
-<table id="basketballFixtures">
-<thead><tr><th>Date</th><th>Match</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="basketballFixtures"><thead><tr><th>Date</th><th>Match</th></tr></thead><tbody></tbody></table></div>
 </section>
-
 <section class="section" data-aos="fade-up">
 <h2>Recent Results - Basketball</h2>
-<div class="table-container">
-<table id="basketballResults">
-<thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="basketballResults"><thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead><tbody></tbody></table></div>
 </section>
 </div>
 
 <div id="tennis" class="tabContent" style="display:none;">
 <section class="section" data-aos="fade-up">
 <h2>Live Scores - Tennis</h2>
-<div class="table-container">
-<table id="tennisLive">
-<thead><tr><th>Time</th><th>Player A</th><th>Score</th><th>Player B</th><th>Status</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="tennisLive"><thead><tr><th>Time</th><th>Player A</th><th>Score</th><th>Player B</th><th>Status</th></tr></thead><tbody></tbody></table></div>
 </section>
-
 <section class="section" data-aos="fade-up">
 <h2>Upcoming Matches - Tennis</h2>
-<div class="table-container">
-<table id="tennisFixtures">
-<thead><tr><th>Date</th><th>Match</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="tennisFixtures"><thead><tr><th>Date</th><th>Match</th></tr></thead><tbody></tbody></table></div>
 </section>
-
 <section class="section" data-aos="fade-up">
 <h2>Recent Results - Tennis</h2>
-<div class="table-container">
-<table id="tennisResults">
-<thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead>
-<tbody></tbody>
-</table>
-</div>
+<div class="table-container"><table id="tennisResults"><thead><tr><th>Date</th><th>Match</th><th>Score</th></tr></thead><tbody></tbody></table></div>
 </section>
-</div>
-
-<!-- News Section -->
-<section class="section" id="sportsNews" data-aos="fade-up">
-<h2>Sports News</h2>
-<div class="grid" id="newsContainer"></div>
-</section>
-
-<!-- YouTube Highlights -->
-<section class="section" id="highlights" data-aos="fade-up">
-<h2>Latest Highlights</h2>
-<div class="grid" id="highlightsContainer"></div>
-</section>
-
-<!-- Mini Game -->
-<section class="section" data-aos="fade-up">
-<h2>Mini Penalty Shootout</h2>
-<canvas id="gameCanvas" width="400" height="300"></canvas>
-<button onclick="kickBall()">Kick!</button>
-</section>
-
-<!-- Google Ads Placeholder -->
-<div class="ads" data-aos="fade-up">Google Ad Placeholder</div>
-
-<!-- Footer -->
-<footer data-aos="fade-up">
-<h3>Stay Updated with Daily Sports</h3>
-<input type="email" id="subscribeEmail" placeholder="Enter your email">
-<button onclick="subscribe()">Subscribe</button>
-<p>&copy; 2025 GoalHaus | Designed by Scribe Haus</p>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-// ---------- AOS ----------
-AOS.init();
-
-// ---------- Tab Function ----------
-function openTab(tabName){
-document.querySelectorAll('.tabContent').forEach(tc=>tc.style.display='none');
-document.getElementById(tabName).style.display='block';
-document.querySelectorAll('.tabBtn').forEach(btn=>btn.classList.remove('active'));
-document.querySelector(`button[onclick="openTab('${tabName}')"]`).classList.add('active');
-}
-
-// ---------- Subscribe ----------
-function subscribe(){
-const email=document.getElementById('subscribeEmail').value;
-if(email) alert(`Subscribed with ${email}!`);
-else alert('Please enter a valid email.');
-}
-
-// ---------- Sample Data ----------
-const footballLiveData=[
-{time:'14:00',teamA:'Arsenal',score:'1-0',teamB:'Chelsea',status:'LIVE'},
-{time:'16:30',teamA:'Liverpool',score:'0-0',teamB:'Manchester United',status:'LIVE'}
-];
-const footballFixturesData=[
-{date:'2025-09-05',match:'Arsenal vs Chelsea'},
-{date:'2025-09-06',match:'Liverpool vs Manchester United'}
-];
-const footballResultsData=[
-{date:'2025-08-30',match:'Manchester United vs Liverpool',score:'2-1'},
-{date:'2025-08-29',match:'Juventus vs AC Milan',score:'3-0'}
-];
-const basketballLiveData=[
-{time:'18:00',teamA:'Lakers',score:'102-98',teamB:'Bulls',status:'LIVE'},
-{time:'20:30',teamA:'Heat',score:'89-95',teamB:'Celtics',status:'LIVE'}
-];
-const tennisLiveData=[
-{time:'12:00',teamA:'Federer',score:'6-4',teamB:'Nadal',status:'LIVE'},
-{time:'14:00',teamA:'Djokovic',score:'3-6',teamB:'Medvedev',status:'LIVE'}
-];
-
-// ---------- Populate Tables ----------
-function populateTable(tableId,data){
-const tbody=document.getElementById(tableId).querySelector('tbody');
-tbody.innerHTML=data.map(d=>`<tr>${Object.values(d).map(v=>`<td>${v}</td>`).join('')}</tr>`).join('');
-}
-
-populateTable('footballLive',footballLiveData);
-populateTable('footballFixtures',footballFixturesData);
-populateTable('footballResults',footballResultsData);
-populateTable('basketballLive',basketballLiveData);
-populateTable('tennisLive',tennisLiveData);
-
-// ---------- News ----------
-const newsArticles=[
-{title:'Football: Arsenal wins the cup!',img:'https://images.pexels.com/photos/3991876/pexels-photo-3991876.jpeg',link:'#'},
-{title:'Basketball: Lakers dominate Bulls!',img:'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg',link:'#'},
-{title:'Tennis: Djokovic beats Nadal!',img:'https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg',link:'#'}
-];
-document.getElementById('newsContainer').innerHTML=newsArticles.map(n=>`<div class="card"><img src="${n.img}" width="100%" alt="${n.title}"><h3>${n.title}</h3><a href="${n.link}" target="_blank">Read More</a></div>`).join('');
-
-// ---------- YouTube Highlights ----------
-const highlightVideos=[
-"https://www.youtube.com/embed/j0w1C4F9l3A",
-"https://www.youtube.com/embed/DuF3zG4h68U",
-"https://www.youtube.com/embed/Y1tYlHg9h9c",
-"https://www.youtube.com/embed/L4NyJ9LRxVQ"
-];
-document.getElementById('highlightsContainer').innerHTML=highlightVideos.map(v=>`<div class="card"><iframe width="100%" height="200" src="${v}" frameborder="0" allowfullscreen></iframe></div>`).join('');
-
-// ---------- Mini Game ----------
-const canvas=document.getElementById('gameCanvas');
-const ctx=canvas.getContext('2d');
-let ballX=200,ballY=250;
-function drawBall(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="#CD7F32";ctx.fillRect(150,50,100,10);
-ctx.beginPath();ctx.arc(ballX,ballY,10,0,Math.PI*2);ctx.fillStyle="#fff";ctx.fill();ctx.closePath();
-}
-drawBall();
-function kickBall(){
-let interval=setInterval(()=>{
-ballY-=5;drawBall();
-if(ballY<=60){clearInterval(interval);alert('Goal! ⚽');ballY=250;drawBall();}
-},20);
-}
-</script>
-
-</body>
-</html>
+</
