@@ -3,54 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoalHaus - Live Football Portal</title>
-<meta name="description" content="GoalHaus brings live football scores, fixtures, results, latest highlights, news, and mini games in a sleek black & bronze interface.">
-<meta name="keywords" content="football, soccer, live scores, fixtures, sports news, highlights, GoalHaus, Scribe Haus">
-<meta property="og:title" content="GoalHaus - Live Football Scores & News">
-<meta property="og:description" content="Stay updated with live football scores, upcoming fixtures, results, daily highlights, news, and mini games with GoalHaus.">
+<title>GoalHaus - Live Sports Portal</title>
+<meta name="description" content="GoalHaus provides live scores, fixtures, results, highlights, and sports news across football, basketball, tennis and more.">
+<meta name="keywords" content="sports, live scores, football, basketball, tennis, highlights, news, GoalHaus, Scribe Haus">
+<meta property="og:title" content="GoalHaus - Live Sports Portal">
+<meta property="og:description" content="Stay updated with live scores, upcoming fixtures, results, daily highlights, and sports news from multiple sports with GoalHaus.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yourwebsite.com">
 <meta property="og:image" content="https://images.unsplash.com/photo-1601162057312-1e06d0c5fef3?auto=format&fit=crop&w=1350&q=80">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <style>
-/* ---------- General Body & Fonts ---------- */
-body { margin:0; font-family: 'Arial', sans-serif; background:#111 url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed; background-size:cover; color:#fff; }
-a { color:#CD7F32; text-decoration:none; }
-h1,h2,h3,h4 { color:#CD7F32; margin-bottom:15px; }
-
-/* ---------- Header ---------- */
-header { background:rgba(0,0,0,0.85); padding:25px; text-align:center; font-size:2.5rem; font-weight:bold; letter-spacing:2px; color:#CD7F32; text-transform:uppercase; text-shadow:0 0 10px #CD7F32; }
-
-/* ---------- Slider ---------- */
-.slider { position:relative; overflow:hidden; max-height:450px; margin-bottom:50px; border-bottom:4px solid #CD7F32; border-radius:8px; box-shadow:0 0 20px #CD7F32; }
-.slider img { width:100%; height:450px; object-fit:cover; transition:1s ease-in-out; border-radius:8px; }
-
-/* ---------- Sections ---------- */
-.section { padding:50px 20px; background:rgba(0,0,0,0.7); margin:20px auto; border-radius:12px; box-shadow:0 0 20px #CD7F32; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-
-/* ---------- Cards ---------- */
-.card { background:#1A1A1A; padding:20px; border-radius:12px; transition:0.3s; box-shadow:0 0 10px #CD7F32; }
-.card:hover { transform:scale(1.05); box-shadow:0 0 25px #CD7F32; }
-
-/* ---------- Buttons ---------- */
-button { padding:12px 25px; background:#CD7F32; border:none; cursor:pointer; border-radius:6px; font-weight:bold; color:#000; transition:0.3s; }
-button:hover { transform:scale(1.05); box-shadow:0 0 15px #CD7F32; }
-
-/* ---------- Footer ---------- */
-footer { background:rgba(0,0,0,0.85); text-align:center; padding:50px 20px; border-top:2px solid #CD7F32; }
-input[type="email"] { padding:12px; border-radius:6px; border:none; margin-right:10px; width:250px; }
-
-/* ---------- Mini Game ---------- */
-#gameCanvas { background:#000; display:block; margin:20px auto; border:2px solid #CD7F32; border-radius:8px; }
-
-/* ---------- Animations ---------- */
-@keyframes fadeInUp { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:translateY(0);} }
-[data-aos] { animation:fadeInUp 1s ease forwards; opacity:0; }
-
-/* ---------- Responsive ---------- */
-@media(max-width:768px){ .grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));} }
+/* ------------------ Body & Fonts ------------------ */
+body { margin:0; font-family:'Arial',sans-serif; background:#111 url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed; background-size:cover; color:#fff;}
+a { color:#CD7F32; text-decoration:none;}
+h1,h2,h3,h4 { color:#CD7F32; margin-bottom:15px;}
+header { background:rgba(0,0,0,0.85); padding:25px; text-align:center; font-size:2.5rem; font-weight:bold; letter-spacing:2px; color:#CD7F32; text-transform:uppercase; text-shadow:0 0 10px #CD7F32;}
+.slider { position:relative; overflow:hidden; max-height:450px; margin-bottom:50px; border-bottom:4px solid #CD7F32; border-radius:8px; box-shadow:0 0 20px #CD7F32;}
+.slider img { width:100%; height:450px; object-fit:cover; transition:1s ease-in-out; border-radius:8px;}
+.section { padding:50px 20px; background:rgba(0,0,0,0.7); margin:20px auto; border-radius:12px; box-shadow:0 0 20px #CD7F32;}
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
+.card { background:#1A1A1A; padding:20px; border-radius:12px; transition:0.3s; box-shadow:0 0 10px #CD7F32;}
+.card:hover { transform:scale(1.05); box-shadow:0 0 25px #CD7F32;}
+button { padding:12px 25px; background:#CD7F32; border:none; cursor:pointer; border-radius:6px; font-weight:bold; color:#000; transition:0.3s;}
+button:hover { transform:scale(1.05); box-shadow:0 0 15px #CD7F32;}
+footer { background:rgba(0,0,0,0.85); text-align:center; padding:50px 20px; border-top:2px solid #CD7F32;}
+input[type="email"] { padding:12px; border-radius:6px; border:none; margin-right:10px; width:250px;}
+#gameCanvas { background:#000; display:block; margin:20px auto; border:2px solid #CD7F32; border-radius:8px;}
+@keyframes fadeInUp { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:translateY(0);}}
+[data-aos] { animation:fadeInUp 1s ease forwards; opacity:0;}
+@media(max-width:768px){.grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}}
 </style>
 </head>
 <body>
@@ -61,59 +43,58 @@ input[type="email"] { padding:12px; border-radius:6px; border:none; margin-right
 
 <!-- Slider -->
 <section class="slider" id="slider">
-  <img src="https://images.unsplash.com/photo-1601162057312-1e06d0c5fef3?auto=format&fit=crop&w=1350&q=80" alt="Football Slide 1" loading="lazy">
+<img src="https://images.unsplash.com/photo-1601162057312-1e06d0c5fef3?auto=format&fit=crop&w=1350&q=80" alt="Sports Slide" loading="lazy">
 </section>
 
 <!-- Live Scores -->
 <section class="section" id="liveScores" data-aos="fade-up">
-  <h2>Live Scores</h2>
-  <div id="scoresContainer" class="grid"></div>
+<h2>Live Scores</h2>
+<div id="scoresContainer" class="grid"></div>
 </section>
 
 <!-- Upcoming Fixtures -->
 <section class="section" id="fixtures" data-aos="fade-up">
-  <h2>Upcoming Fixtures</h2>
-  <div id="fixturesContainer" class="grid"></div>
+<h2>Upcoming Fixtures</h2>
+<div id="fixturesContainer" class="grid"></div>
 </section>
 
-<!-- Match Results -->
+<!-- Recent Results -->
 <section class="section" id="results" data-aos="fade-up">
-  <h2>Recent Results</h2>
-  <div id="resultsContainer" class="grid"></div>
+<h2>Recent Results</h2>
+<div id="resultsContainer" class="grid"></div>
 </section>
 
-<!-- Football News -->
+<!-- Sports News -->
 <section class="section" id="news" data-aos="fade-up">
-  <h2>Football News</h2>
-  <div id="newsContainer" class="grid"></div>
+<h2>Sports News</h2>
+<div id="newsContainer" class="grid"></div>
 </section>
 
 <!-- YouTube Highlights -->
 <section class="section" id="highlights" data-aos="fade-up">
-  <h2>Latest Highlights</h2>
-  <div id="highlightsContainer" class="grid"></div>
+<h2>Latest Highlights</h2>
+<div id="highlightsContainer" class="grid"></div>
 </section>
 
 <!-- Mini Football Game -->
 <section class="section" data-aos="fade-up">
-  <h2>Mini Penalty Shootout</h2>
-  <canvas id="gameCanvas" width="400" height="300"></canvas>
-  <button onclick="kickBall()">Kick!</button>
+<h2>Mini Penalty Shootout</h2>
+<canvas id="gameCanvas" width="400" height="300"></canvas>
+<button onclick="kickBall()">Kick!</button>
 </section>
 
 </main>
 
-<!-- Footer -->
 <footer data-aos="fade-up">
-  <h3>Stay Updated with Daily Football</h3>
-  <input type="email" id="subscribeEmail" placeholder="Enter your email">
-  <button onclick="subscribe()">Subscribe</button>
-  <p>&copy; 2025 GoalHaus | Designed by Scribe Haus</p>
+<h3>Stay Updated with Daily Sports</h3>
+<input type="email" id="subscribeEmail" placeholder="Enter your email">
+<button onclick="subscribe()">Subscribe</button>
+<p>&copy; 2025 GoalHaus | Designed by Scribe Haus</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-// ---------- AOS Animations ----------
+// ---------- AOS ----------
 AOS.init();
 
 // ---------- Slider ----------
@@ -125,37 +106,124 @@ const slides = [
 ];
 let currentSlide=0;
 setInterval(()=>{
-  currentSlide=(currentSlide+1)%slides.length;
-  document.getElementById('slider').children[0].src=slides[currentSlide];
+currentSlide=(currentSlide+1)%slides.length;
+document.getElementById('slider').children[0].src=slides[currentSlide];
 },10000);
 
 // ---------- Subscribe ----------
 function subscribe(){
-  const email=document.getElementById('subscribeEmail').value;
-  if(email) alert(`Subscribed with ${email}!`);
-  else alert('Please enter a valid email.');
+const email=document.getElementById('subscribeEmail').value;
+if(email) alert(`Subscribed with ${email}!`);
+else alert('Please enter a valid email.');
 }
 
 // ---------- Live Scores ----------
 async function fetchScores(){
-  try{
-    const res=await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/football/rss.xml');
-    const data=await res.json();
-    const container=document.getElementById('scoresContainer');
-    container.innerHTML=data.items.slice(0,12).map(item=>`
-      <div class="card">
-        <img src="https://raw.githubusercontent.com/luukhopman/football-logos/master/logos/1/arsenal.png" width="40" alt="Team Logo">
-        <h3>${item.title}</h3>
-        <p>${item.pubDate.split(" ")[0]}</p>
-      </div>
-    `).join('');
-  }catch(e){console.error(e);}
+try{
+const urls = [
+'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/football/rss.xml',
+'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/basketball/rss.xml',
+'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/tennis/rss.xml'
+];
+let scoresHTML='';
+for(const url of urls){
+const res=await fetch(url);
+const data=await res.json();
+data.items.slice(0,5).forEach(item=>{
+scoresHTML+=`
+<div class="card">
+<h3>${item.title}</h3>
+<p>${item.pubDate.split(" ")[0]}</p>
+<a href="${item.link}" target="_blank">View Details</a>
+</div>
+`;
+});
+}
+document.getElementById('scoresContainer').innerHTML=scoresHTML;
+}catch(e){console.error(e);}
 }
 fetchScores();
 setInterval(fetchScores,60000);
 
 // ---------- Upcoming Fixtures ----------
 async function fetchFixtures(){
-  const fixtures = [
-    {match:"Arsenal vs Chelsea", date:"2025-09-05", logo:"https://raw.githubusercontent.com/luukhopman/football-logos/master/logos/1/chelsea.png"},
-    {match:"Manchester United
+const fixtures=[
+{sport:"Football", match:"Arsenal vs Chelsea", date:"2025-09-05"},
+{sport:"Basketball", match:"Lakers vs Bulls", date:"2025-09-06"},
+{sport:"Tennis", match:"Federer vs Nadal", date:"2025-09-07"},
+{sport:"Football", match:"Real Madrid vs Barcelona", date:"2025-09-08"},
+{sport:"Basketball", match:"Heat vs Celtics", date:"2025-09-09"},
+{sport:"Tennis", match:"Djokovic vs Medvedev", date:"2025-09-10"}
+];
+let html='';
+fixtures.forEach(f=>{html+=`<div class="card"><h3>${f.sport}: ${f.match}</h3><p>${f.date}</p></div>`;});
+document.getElementById('fixturesContainer').innerHTML=html;
+}
+fetchFixtures();
+
+// ---------- Recent Results ----------
+async function fetchResults(){
+const results=[
+{sport:"Football", match:"Manchester United 2-1 Liverpool", date:"2025-08-30"},
+{sport:"Basketball", match:"Warriors 110-102 Nets", date:"2025-08-30"},
+{sport:"Tennis", match:"Serena Williams def. Osaka 6-4 6-3", date:"2025-08-29"},
+{sport:"Football", match:"Juventus 3-0 AC Milan", date:"2025-08-29"},
+{sport:"Basketball", match:"Bucks 99-95 Raptors", date:"2025-08-28"}
+];
+let html='';
+results.forEach(r=>{html+=`<div class="card"><h3>${r.sport}: ${r.match}</h3><p>${r.date}</p></div>`;});
+document.getElementById('resultsContainer').innerHTML=html;
+}
+fetchResults();
+
+// ---------- Sports News ----------
+async function fetchNews(){
+try{
+const urls = [
+'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/football/rss.xml',
+'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/basketball/rss.xml',
+'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/sport/tennis/rss.xml'
+];
+let newsHTML='';
+for(const url of urls){
+const res=await fetch(url);
+const data=await res.json();
+data.items.slice(0,4).forEach(item=>{
+newsHTML+=`<div class="card"><h3>${item.title}</h3><p>${item.pubDate.split(" ")[0]}</p><a href="${item.link}" target="_blank">Read More</a></div>`;
+});
+}
+document.getElementById('newsContainer').innerHTML=newsHTML;
+}catch(e){console.error(e);}
+}
+fetchNews();
+setInterval(fetchNews,3600000);
+
+// ---------- YouTube Highlights ----------
+const highlightVideos=[
+"https://www.youtube.com/embed/j0w1C4F9l3A",
+"https://www.youtube.com/embed/DuF3zG4h68U",
+"https://www.youtube.com/embed/Y1tYlHg9h9c",
+"https://www.youtube.com/embed/L4NyJ9LRxVQ"
+];
+const highlightContainer=document.getElementById('highlightsContainer');
+highlightContainer.innerHTML=highlightVideos.map(video=>`<div class="card"><iframe width="100%" height="200" src="${video}" frameborder="0" allowfullscreen></iframe></div>`).join('');
+
+// ---------- Mini Game ----------
+const canvas=document.getElementById('gameCanvas');
+const ctx=canvas.getContext('2d');
+let ballX=200,ballY=250;
+function drawBall(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#CD7F32";ctx.fillRect(150,50,100,10);
+ctx.beginPath();ctx.arc(ballX,ballY,10,0,Math.PI*2);ctx.fillStyle="#fff";ctx.fill();ctx.closePath();
+}
+drawBall();
+function kickBall(){
+let interval=setInterval(()=>{
+ballY-=5;drawBall();
+if(ballY<=60){clearInterval(interval);alert('Goal! ⚽');ballY=250;drawBall();}
+},20);
+}
+</script>
+</body>
+</html>
