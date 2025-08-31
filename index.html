@@ -6,17 +6,20 @@
   <title>GoalHaus — Live Football Hub</title>
   <meta name="description" content="GoalHaus — live scores, fixtures, highlights, fan zone and more. Built by Scribe Haus." />
 
+  <!-- SEO / Open Graph -->
+  <meta property="og:title" content="GoalHaus — Live Football Hub">
+  <meta property="og:description" content="Live scores, fixtures, highlights, fan zone — all in one fan-first hub.">
+  <meta property="og:image" content="https://yourdomain.com/path-to-preview-image.jpg">
+  <meta property="og:type" content="website">
+
   <style>
     /* -------------------------
-       BASE / THEME
+       THEME & BASE
        ------------------------- */
     :root{
-      --bg-1:#070707;
-      --bg-2:#0f0f0f;
-      --gold:#f5c542;
-      --muted:#bdbdbd;
-      --card:#111216;
-      --glass: rgba(255,255,255,0.04);
+      --bg-1:#070707; --bg-2:#0f0f0f;
+      --gold:#f5c542; --muted:#bdbdbd;
+      --card:#111216; --glass: rgba(255,255,255,0.04);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -25,17 +28,13 @@
       font-family: Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
       background: linear-gradient(120deg,var(--bg-1),var(--bg-2));
       color:var(--gold);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
       scroll-behavior:smooth;
     }
     a{color:inherit}
     img{max-width:100%;height:auto;display:block}
 
-    /* -------------------------
-       Animated gradient overlay
-       ------------------------- */
+    /* Animated background & orbs */
     .bg-animated{
       position:fixed; inset:0; z-index:0; pointer-events:none;
       background: radial-gradient(circle at 10% 10%, rgba(245,197,66,0.06), transparent 8%),
@@ -49,111 +48,72 @@
       50%{background-position:100% 50%,0% 100%}
       100%{background-position:0% 0%,100% 100%}
     }
-
-    /* -------------------------
-       Abstract glowing orbs
-       ------------------------- */
     .orb{
-      position:fixed;
-      border-radius:50%;
-      filter: blur(10px);
-      opacity:0.12;
-      z-index:0;
-      pointer-events:none;
-      mix-blend-mode: screen;
+      position:fixed; border-radius:50%; filter: blur(10px); opacity:0.12; z-index:0; pointer-events:none; mix-blend-mode: screen;
     }
     .orb.orb1{width:220px;height:220px;left:-40px;top:10vh;background: radial-gradient(circle,#f5c542 0%, rgba(245,197,66,0.05) 40%, transparent 60%); animation: float1 28s linear infinite;}
     .orb.orb2{width:160px;height:160px;right:-30px;top:30vh;background: radial-gradient(circle,#ffd87a 0%, rgba(255,216,122,0.04) 40%, transparent 60%); animation: float2 22s linear infinite; opacity:0.1}
     .orb.orb3{width:300px;height:300px;left:10%;bottom:-80px;background: radial-gradient(circle,#f0b83a 0%, rgba(240,184,58,0.035) 45%, transparent 70%); animation: float3 34s linear infinite; opacity:0.08}
-
     @keyframes float1 {0%{transform:translateY(0) scale(.95)}50%{transform:translateY(-40vh) scale(1.05)}100%{transform:translateY(0) scale(.95)}}
     @keyframes float2 {0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30vh) scale(1.02)}100%{transform:translateY(0) scale(1)}}
     @keyframes float3 {0%{transform:translateY(0) scale(.9)}50%{transform:translateY(-45vh) scale(1.06)}100%{transform:translateY(0) scale(.9)}}
 
-    /* -------------------------
-       LAYOUT
-       ------------------------- */
+    /* Layout */
     .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:18px}
     header{padding:56px 18px 36px;text-align:center}
     .brand{display:flex;align-items:center;justify-content:center;gap:14px}
     .logo{font-size:36px;line-height:1}
     .title{font-weight:800;font-size:36px;letter-spacing:2px;color:var(--gold)}
     .subtitle{color:var(--muted);margin-top:6px;font-size:14px}
-
     nav{display:flex;gap:12px;justify-content:center;margin-top:18px;margin-bottom:6px}
     .navlink{color:var(--muted);font-weight:600;padding:8px 12px;border-radius:999px;background:transparent;border:1px solid transparent;transition:all .2s}
     .navlink:hover{color:#fff;border-color:rgba(255,255,255,0.04);background:var(--glass)}
-
     section{padding:38px 18px}
     .sectionInner{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); padding:18px; border-radius:12px; box-shadow: 0 6px 18px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.03)}
     .grid{display:grid;gap:12px}
     @media(min-width:760px){ .grid.cols3{grid-template-columns:repeat(3,1fr)} .grid.cols2{grid-template-columns:repeat(2,1fr)} }
-
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
-      border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);
-      transition: transform .22s, box-shadow .22s; color: #fff;
-    }
+    .card{background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);transition: transform .22s, box-shadow .22s; color: #fff;}
     .card h3{margin:0 0 8px 0;color:var(--gold);font-size:16px}
     .card p{color:var(--muted);font-size:13px;margin:0}
-
     .muted{color:var(--muted)}
     .center{text-align:center}
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--gold);color:#111;font-weight:700;border:none;cursor:pointer}
     .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:10px;cursor:pointer}
-
     table{width:100%;border-collapse:collapse;margin-top:12px}
     th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left;color:#fff}
     th{color:var(--gold);font-weight:700}
-
     .videoWrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px}
     .videoWrap iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
-
     .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
     .reveal.is-visible{opacity:1;transform:translateY(0)}
-
     footer{padding:28px 18px;text-align:center;color:var(--muted);}
     footer a{color:var(--gold);text-decoration:none;font-weight:700}
+    @media(max-width:520px){ .title{font-size:28px} .logo{font-size:28px} header{padding:36px 12px} }
 
-    @media(max-width:520px){
-      .title{font-size:28px}
-      .logo{font-size:28px}
-      header{padding:36px 12px}
-    }
-
-    /* -------------------------
-       HERO CAROUSEL
-       ------------------------- */
-    #hero{position:relative;overflow:hidden;border-radius:12px;margin-bottom:24px;}
-    .carouselSlides{position:relative;width:100%;height:420px}
-    .carouselSlide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1s ease;display:flex;align-items:center;justify-content:center}
-    .carouselSlide img, .carouselSlide iframe{width:100%;height:100%;object-fit:cover;border-radius:12px}
-    .carouselSlide.active{opacity:1}
-    .carouselNav{position:absolute;top:50%;width:100%;display:flex;justify-content:space-between;pointer-events:none;transform:translateY(-50%)}
-    .carouselNav button{pointer-events:auto;background:rgba(0,0,0,0.4);border:none;color:#fff;padding:8px 12px;font-size:22px;border-radius:6px;cursor:pointer}
+    /* Typing animation for hero tagline */
+    .typing { border-right: .15em solid var(--gold); white-space: nowrap; overflow: hidden; }
   </style>
 </head>
 <body>
 
-  <div class="bg-animated" aria-hidden="true"></div>
-  <div class="orb orb1" aria-hidden="true"></div>
-  <div class="orb orb2" aria-hidden="true"></div>
-  <div class="orb orb3" aria-hidden="true"></div>
+  <!-- animated background & orbs -->
+  <div class="bg-animated"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
 
   <div class="wrap">
 
-    <!-- header -->
+    <!-- header / hero -->
     <header>
       <div class="brand">
         <div class="logo">⚽</div>
         <div>
-          <div class="title">Goalhaus</div>
-          <div class="subtitle">live scores • fixtures • highlights • fan zone — by Scribe Haus</div>
+          <div class="title">GoalHaus</div>
+          <div class="subtitle typing" id="typingTagline">Live Football. Scores. Highlights. Fun.</div>
         </div>
       </div>
-
       <nav>
-        <a class="navlink" href="#hero">Home</a>
         <a class="navlink" href="#live">Live</a>
         <a class="navlink" href="#fixtures">Fixtures</a>
         <a class="navlink" href="#table">Table</a>
@@ -163,36 +123,13 @@
       </nav>
     </header>
 
-    <!-- HERO CAROUSEL -->
-    <section id="hero" class="reveal">
-      <div class="carouselSlides">
-        <div class="carouselSlide active">
-          <img src="https://images.unsplash.com/photo-1599690199301-34b0e2092bbd?auto=format&fit=crop&w=1200&q=80" alt="Messi Goal">
+    <!-- carousel for images & YouTube highlights -->
+    <section id="carousel" class="reveal">
+      <div class="sectionInner center">
+        <h2>Top Highlights</h2>
+        <div id="carouselContainer" style="position:relative;overflow:hidden;border-radius:12px;margin-top:12px">
+          <!-- Images and YouTube iframes will be dynamically injected here -->
         </div>
-        <div class="carouselSlide">
-          <iframe src="https://www.youtube.com/embed/3Xz1TtW0lKQ" title="2022 FIFA World Cup Final Highlights" allowfullscreen></iframe>
-        </div>
-        <div class="carouselSlide">
-          <img src="https://images.unsplash.com/photo-1604147706281-3c21f2c3e8cb?auto=format&fit=crop&w=1200&q=80" alt="Champions League">
-        </div>
-        <div class="carouselSlide">
-          <iframe src="https://www.youtube.com/embed/sDFr2Yzd-8s" title="UEFA Champions League Best Goals" allowfullscreen></iframe>
-        </div>
-        <div class="carouselSlide">
-          <iframe src="https://www.youtube.com/embed/pwF4cY1Hh1I" title="Premier League Highlights" allowfullscreen></iframe>
-        </div>
-        <div class="carouselSlide">
-          <img src="https://images.unsplash.com/photo-1579490121040-9f5c0a68d60b?auto=format&fit=crop&w=1200&q=80" alt="Football Fans">
-        </div>
-      </div>
-      <div class="carouselNav">
-        <button id="prev">&#10094;</button>
-        <button id="next">&#10095;</button>
-      </div>
-      <div style="text-align:center;margin-top:12px;">
-        <button class="btn" onclick="location.href='#live'">⚽ Live Scores</button>
-        <button class="btn" onclick="location.href='#highlights'">🎥 Watch Highlights</button>
-        <button class="btn" onclick="location.href='#fanzone'">🏆 Fan Zone</button>
       </div>
     </section>
 
@@ -200,19 +137,8 @@
     <section id="live" class="reveal">
       <div class="sectionInner">
         <h2 class="center">Live Scores</h2>
-        <div class="grid cols3" style="margin-top:14px">
-          <div class="card">
-            <h3>Barcelona vs Real Madrid</h3>
-            <p class="muted">Score: 2 — 1 (84')</p>
-          </div>
-          <div class="card">
-            <h3>Man City vs Arsenal</h3>
-            <p class="muted">Score: 3 — 3 (HT)</p>
-          </div>
-          <div class="card">
-            <h3>Bayern vs Dortmund</h3>
-            <p class="muted">Score: 1 — 0 (65')</p>
-          </div>
+        <div class="grid cols3" id="liveScoresContainer" style="margin-top:14px">
+          <!-- dynamically populated -->
         </div>
       </div>
     </section>
@@ -221,19 +147,8 @@
     <section id="fixtures" class="reveal">
       <div class="sectionInner">
         <h2 class="center">Upcoming Fixtures</h2>
-        <div class="grid cols3" style="margin-top:14px">
-          <div class="card">
-            <h3>Arsenal vs Liverpool</h3>
-            <p class="muted">Sept 1 • 18:00 GMT</p>
-          </div>
-          <div class="card">
-            <h3>Juventus vs Inter</h3>
-            <p class="muted">Sept 2 • 20:45 GMT</p>
-          </div>
-          <div class="card">
-            <h3>PSG vs Marseille</h3>
-            <p class="muted">Sept 3 • 19:00 GMT</p>
-          </div>
+        <div class="grid cols3" id="fixturesContainer" style="margin-top:14px">
+          <!-- dynamically populated -->
         </div>
       </div>
     </section>
@@ -241,54 +156,143 @@
     <!-- table -->
     <section id="table" class="reveal">
       <div class="sectionInner">
-        <h2 class="center">League Table — Example</h2>
+        <h2 class="center">League Table</h2>
         <div style="overflow:auto;margin-top:12px">
-          <table>
+          <table id="tableContainer">
             <thead>
               <tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>Pts</th></tr>
             </thead>
             <tbody>
-              <tr><td>1</td><td>Man City</td><td>30</td><td>24</td><td>4</td><td>2</td><td>76</td></tr>
-              <tr><td>2</td><td>Liverpool</td><td>30</td><td>22</td><td>5</td><td>3</td><td>71</td></tr>
-              <tr><td>3</td><td>Arsenal</td><td>30</td><td>20</td><td>6</td><td>4</td><td>66</td></tr>
-              <tr><td>4</td><td>Chelsea</td><td>30</td><td>17</td><td>7</td><td>6</td><td>58</td></tr>
+              <!-- dynamically populated -->
             </tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- top players -->
-    <section id="players" class="reveal">
-      <div class="sectionInner">
-        <h2 class="center">Top Players</h2>
-        <div class="grid cols3" style="margin-top:14px">
-          <div class="card"><h3>Erling Haaland</h3><p class="muted">22 goals</p></div>
-          <div class="card"><h3>Mohamed Salah</h3><p class="muted">18 goals</p></div>
-          <div class="card"><h3>Kylian Mbappé</h3><p class="muted">17 goals</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- highlights (youtube) -->
+    <!-- highlights (YouTube dynamic) -->
     <section id="highlights" class="reveal">
       <div class="sectionInner">
         <h2 class="center">Highlights</h2>
-        <div style="display:grid; gap:12px; grid-template-columns: 1fr; margin-top:12px">
-          <div class="videoWrap card"><iframe src="https://www.youtube.com/embed/3Xz1TtW0lKQ" title="Highlights" allowfullscreen></iframe></div>
-          <div class="videoWrap card"><iframe src="https://www.youtube.com/embed/sDFr2Yzd-8s" title="Top Goals" allowfullscreen></iframe></div>
-          <div class="videoWrap card"><iframe src="https://www.youtube.com/embed/pwF4cY1Hh1I" title="Premier League Highlights" allowfullscreen></iframe></div>
+        <div id="youtubeHighlights" style="display:grid; gap:12px; grid-template-columns: 1fr; margin-top:12px">
+          <!-- dynamically populated -->
         </div>
       </div>
     </section>
 
-    <!-- fan zone + poll -->
+    <!-- fan zone -->
     <section id="fanzone" class="reveal">
       <div class="sectionInner">
         <h2 class="center">Fan Zone</h2>
-
         <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:12px">
           <div class="card" style="min-width:260px">
             <h3>Fan Poll</h3>
             <p class="muted">Who will win the title this season?</p>
-            <div style="margin-top:10px;display
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <button class="ghost" onclick="vote('Man City')">Man City</button>
+              <button class="ghost" onclick="vote('Liverpool')">Liverpool</button>
+              <button class="ghost" onclick="vote('Arsenal')">Arsenal</button>
+              <button class="ghost" onclick="vote('Other')">Other</button>
+            </div>
+            <p id="pollResult" class="muted" style="margin-top:8px"></p>
+          </div>
+          <div class="card" style="min-width:260px">
+            <h3>Fan of the Week</h3>
+            <p class="muted">Shoutout to Kwaku — amazing community posts!</p>
+          </div>
+          <div class="card" style="min-width:260px">
+            <h3>Trivia</h3>
+            <p class="muted">Fastest red card was shown after 2 seconds in a competitive match.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- penalty shootout -->
+    <section id="penalty" class="reveal">
+      <div class="sectionInner center">
+        <h2>Penalty Shootout</h2>
+        <p class="muted">Aim and test your luck — try to beat the keeper!</p>
+        <canvas id="penaltyCanvas" width="520" height="220" style="max-width:100%;border-radius:8px;margin-top:12px;display:block"></canvas>
+        <div style="margin-top:12px">
+          <button class="btn" id="shootBtn">Kick</button>
+          <button class="ghost" id="resetBtn">Reset</button>
+        </div>
+        <p id="gameMessage" class="muted" style="margin-top:10px"></p>
+      </div>
+    </section>
+
+    <!-- newsletter -->
+    <section id="subscribe" class="reveal">
+      <div class="sectionInner center">
+        <h2>Subscribe for Updates</h2>
+        <p class="muted">Get match alerts, highlights and GoalHaus news to your inbox.</p>
+        <form action="https://formspree.io/f/yourformid" method="POST" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+          <input name="email" type="email" placeholder="your email" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);min-width:220px;background:transparent;color:#fff">
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+        <p class="muted" style="margin-top:8px">We respect your privacy — no spam.</p>
+      </div>
+    </section>
+
+    <!-- about -->
+    <section id="about" class="reveal">
+      <div class="sectionInner">
+        <h2 class="center">About GoalHaus</h2>
+        <p class="muted" style="max-width:900px;margin:12px auto 0">
+          GoalHaus is a fan-first football hub built by Scribe Haus. It brings live scores, fixtures, highlights and playful fan features together in one place — designed to feel friendly, fast and joyful for fans everywhere.
+        </p>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="reveal" style="margin-top:22px">
+      <div class="wrap">
+        <p style="margin-bottom:8px">© 2025 Goalhaus · Built by <a href="https://akosuaaddaebuapim-hash.github.io/Scribe-Haus/" target="_blank" rel="noreferrer">Scribe Haus</a></p>
+        <p class="muted">Made with ❤️ for football fans</p>
+      </div>
+    </footer>
+
+  </div> <!-- wrap -->
+
+  <!-- SCRIPTS -->
+  <script>
+    // Reveal on scroll
+    (function(){
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if(e.isIntersecting) e.target.classList.add('is-visible');
+        });
+      }, {threshold: 0.12});
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+
+    // Typing animation for hero tagline
+    const tagline = "Live Football. Scores. Highlights. Fun.";
+    const typingEl = document.getElementById('typingTagline');
+    let charIndex = 0;
+    function typeTagline(){ typingEl.textContent = tagline.slice(0,charIndex++); if(charIndex <= tagline.length) setTimeout(typeTagline,80);}
+    typeTagline();
+
+    // Fan poll
+    const pollCounts = { 'Man City':0, 'Liverpool':0, 'Arsenal':0, 'Other':0 };
+    function vote(choice){
+      pollCounts[choice] = (pollCounts[choice] || 0) + 1;
+      const total = Object.values(pollCounts).reduce((s,n)=>s+n,0);
+      const pct = Math.round((pollCounts[choice]/(total||1))*100);
+      document.getElementById('pollResult').textContent = `${choice} — ${pollCounts[choice]} votes (${pct}%)`;
+    }
+
+    // -------------------------
+    // Penalty Shootout
+    // -------------------------
+    (function(){
+      const canvas = document.getElementById('penaltyCanvas');
+      const ctx = canvas.getContext('2d');
+      const shootBtn = document.getElementById('shootBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const msg = document.getElementById('gameMessage');
+
+      const W = canvas.width, H = canvas.height;
+      let keeperX = W/2 - 20, keeperY = 40;
+      let ballX
